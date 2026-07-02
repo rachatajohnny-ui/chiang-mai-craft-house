@@ -36,6 +36,8 @@
       "name": "Kloom",
       "dimensions": "⌀ 32cm · 32cm height",
       "images": [
+        "/images/kloom2.png",
+        "/images/kloom3.png",
         "/images/6.png"
       ],
       "type": "pendant",
