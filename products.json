@@ -97,7 +97,10 @@
       "name": "Wai",
       "dimensions": "⌀ 33cm · 42cm height",
       "images": [
-        "/images/5.png"
+        "/images/wai3.png",
+        "/images/wai2.png",
+        "/images/5.png",
+        "/images/wai4.png"
       ],
       "type": "pendant",
       "typeLabel": "Pendant",
