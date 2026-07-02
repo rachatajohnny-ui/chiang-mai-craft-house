@@ -50,6 +50,13 @@ function syncProductCards(list) {
         card.dataset.type = p.type;
         card.dataset.price = p.price;
       }
+
+      if (p.image) {
+        const imgBox = card.querySelector('.product-img');
+        if (imgBox) {
+          imgBox.innerHTML = `<img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" />`;
+        }
+      }
     });
   });
 }
@@ -120,8 +127,8 @@ function renderCartItems() {
     const p = PRODUCTS[id];
     return `
     <div class="cart-item">
-      <div style="height:72px;background:${p.bg};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        ${lampSVG(id)}
+      <div style="height:72px;width:72px;background:${p.bg};display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;">
+        ${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover" />` : lampSVG(id)}
       </div>
       <div>
         <p style="font-family:'Lora',serif;font-size:14px;color:#2c2420;margin-bottom:2px">${p.name}</p>
