@@ -16,12 +16,17 @@ async function loadProducts() {
       PRODUCTS[p.id] = {
         name: p.name,
         sub: `${p.material} · ${p.typeLabel}`,
+        material: p.material || '',
+        typeLabel: p.typeLabel || '',
+        type: p.type || '',
+        dimensions: p.dimensions || '',
         price: p.price,
         bg: p.bg || '#d9cfc2',
         images,
       };
     });
     renderProductGrid(list);
+    renderProductDetail();
   } catch (err) {
     console.error('Could not load products.json', err);
   }
@@ -47,7 +52,6 @@ function renderProductGrid(list) {
 }
 
 function buildProductCardHTML(p, index, opts) {
-  const bgCard = index % 2 === 0 ? 'bg-cream-50' : 'bg-cream-100';
   const bgImg = ['bg-cream-300', 'bg-cream-400', 'bg-cream-200'][index % 3];
   const images = p.images || [];
   const media = images.length ? buildCarouselHTML(images, p.name) : genericLampSVG();
@@ -56,18 +60,21 @@ function buildProductCardHTML(p, index, opts) {
     : '';
   const padClass = opts.size === 'lg' ? 'p-6' : 'p-5';
   const nameClass = opts.size === 'lg' ? 'font-serif text-xl text-earth-800 mb-3' : 'font-serif text-lg text-earth-800 mb-1';
-  const btnClass = opts.size === 'lg' ? 'btn-outline text-[10px] px-4 py-2' : 'btn-outline btn-sm';
+  const detailHref = `product.html?id=${encodeURIComponent(p.id)}`;
 
   return `
-    <article class="product-card ${bgCard} cursor-pointer" data-type="${p.type || ''}" data-price="${p.price}" aria-label="${p.name}">
-      <div class="product-img aspect-square ${bgImg} flex items-center justify-center overflow-hidden relative">${media}</div>
-      <div class="${padClass} ${bgCard}">
+    <article class="product-card bg-cream-50 cursor-pointer" data-type="${p.type || ''}" data-price="${p.price}" aria-label="${p.name}">
+      <a href="${detailHref}" class="block">
+        <div class="product-img aspect-square ${bgImg} flex items-center justify-center overflow-hidden relative">${media}</div>
+      </a>
+      <div class="${padClass} bg-cream-50">
         <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">${p.material || ''} · ${p.typeLabel || ''}</p>
-        <h3 class="${nameClass}">${p.name}</h3>
+        <a href="${detailHref}" class="block hover:opacity-70 transition-opacity"><h3 class="${nameClass}">${p.name}</h3></a>
         ${dims}
-        <div class="flex items-center justify-between">
-          <span class="font-sans text-sm text-earth-600">฿${(p.price || 0).toLocaleString()}</span>
-          <button class="${btnClass} cursor-pointer" data-product="${p.id}" onclick="addToCart('${p.id}')">Add to cart</button>
+        <p class="font-sans text-sm text-earth-600 mb-3">฿${(p.price || 0).toLocaleString()}</p>
+        <div class="flex items-center gap-2">
+          <a href="${detailHref}" class="btn-outline btn-muted btn-half cursor-pointer">View details</a>
+          <button class="btn-outline btn-half cursor-pointer" data-product="${p.id}" onclick="addToCart('${p.id}')">Add to cart</button>
         </div>
       </div>
     </article>`;
@@ -79,6 +86,51 @@ function genericLampSVG() {
     <path d="M30 20 Q18 62 12 118 Q26 123 45 124 Q64 123 78 118 Q72 62 60 20 Z" fill="#c4a882" opacity="0.75"/>
     <ellipse cx="45" cy="75" rx="18" ry="20" fill="#f5e0a0" opacity="0.22"/>
   </svg>`;
+}
+
+// Fills in the #product-detail container on product.html — reads ?id= from the URL and
+// looks up the product in PRODUCTS (populated by loadProducts()). One template page serves
+// every product, so new products added via the CMS automatically get a detail page too.
+function renderProductDetail() {
+  const root = document.getElementById('product-detail');
+  if (!root) return;
+
+  const id = new URLSearchParams(window.location.search).get('id');
+  const p = id ? PRODUCTS[id] : null;
+
+  if (!p) {
+    root.innerHTML = `
+      <div class="text-center py-24">
+        <p class="font-serif text-2xl text-earth-700 mb-4">Lamp not found</p>
+        <a href="collection.html" class="btn-outline btn-sm">Back to collection</a>
+      </div>`;
+    document.title = 'Not found — Chiang Mai Craft House';
+    return;
+  }
+
+  document.title = `${p.name} — Chiang Mai Craft House`;
+
+  const media = p.images.length ? buildCarouselHTML(p.images, p.name) : genericLampSVG();
+  const dims = p.dimensions ? `<p class="font-sans text-sm text-earth-500 mb-6">${p.dimensions}</p>` : '';
+
+  root.innerHTML = `
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+      <div class="product-img aspect-square bg-cream-300 flex items-center justify-center overflow-hidden relative">${media}</div>
+      <div class="flex flex-col justify-center">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3">${p.material} · ${p.typeLabel}</p>
+        <h1 class="font-serif text-3xl md:text-4xl text-earth-800 mb-4">${p.name}</h1>
+        ${dims}
+        <p class="font-serif text-2xl text-earth-700 mb-8">฿${p.price.toLocaleString()}</p>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-8 max-w-md">Handwoven by hand in Chiang Mai using natural rattan and bamboo. Each lamp is made to order — allow 2–4 weeks for delivery.</p>
+        <div class="flex flex-wrap gap-4">
+          <button class="btn-outline cursor-pointer" data-product="${id}" onclick="addToCart('${id}')">Add to cart</button>
+          <a href="collection.html" class="btn-outline btn-muted cursor-pointer">← Back to collection</a>
+        </div>
+      </div>
+    </div>`;
+
+  const carousel = root.querySelector('.pc-carousel');
+  if (carousel) initCarousel(carousel);
 }
 
 // Builds a swipeable image carousel — dots + arrows appear only when there's more than one photo.

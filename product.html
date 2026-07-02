@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Chiang Mai Craft House</title>
+  <meta name="description" content="Handwoven rattan and bamboo lamp — Chiang Mai Craft House" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="shared.css" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {});
+    }
+  </script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { serif: ['Lora','Georgia','serif'], sans: ['Raleway','system-ui','sans-serif'] },
+        colors: {
+          cream: { 50:'#faf8f4', 100:'#f2ede5', 200:'#e8e0d4', 300:'#d9cfc2', 400:'#c9bba8' },
+          earth: { 100:'#c4a882', 200:'#b09070', 300:'#9c8070', 400:'#8a7060', 500:'#6b5c4e', 600:'#4a3c30', 700:'#2c2420', 800:'#1e1612' }
+        }
+      }}
+    }
+  </script>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-sm border-b border-cream-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-serif text-base text-earth-700 tracking-wide whitespace-nowrap">Chiang Mai <em class="italic text-earth-500">Craft House</em></a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="collection.html" class="nav-link active font-sans text-[11px] tracking-widest uppercase text-earth-700">Collection</a>
+        <a href="craft.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Our Craft</a>
+        <a href="about.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">About</a>
+        <a href="contact.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-5">
+        <button onclick="openCart()" class="cursor-pointer text-earth-500 hover:text-earth-700 transition-colors relative" aria-label="Shopping bag">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count absolute -top-2 -right-2 w-4 h-4 bg-earth-700 text-cream-50 text-[9px] rounded-full hidden items-center justify-center font-sans">0</span>
+        </button>
+      </div>
+      <button id="menu-btn" class="md:hidden cursor-pointer text-earth-500" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-cream-50 border-t border-cream-200">
+    <div class="px-6 py-5 flex flex-col gap-5">
+      <a href="collection.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-700">Collection</a>
+      <a href="craft.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Our Craft</a>
+      <a href="about.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">About</a>
+      <a href="contact.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ BREADCRUMB ═══ -->
+<div class="pt-16 bg-cream-50 border-b border-cream-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4">
+    <a href="collection.html" class="font-sans text-[10px] tracking-widest uppercase text-earth-400 hover:text-earth-700 transition-colors cursor-pointer">← Collection</a>
+  </div>
+</div>
+
+<!-- ═══ PRODUCT DETAIL (rendered by cart.js from products.json) ═══ -->
+<main class="max-w-7xl mx-auto px-6 lg:px-12 py-14 md:py-20">
+  <div id="product-detail"></div>
+</main>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div id="cart-overlay" role="dialog" aria-modal="true" aria-label="Shopping cart"></div>
+<aside id="cart-sidebar" aria-label="Cart">
+  <div class="cart-header">
+    <h2 class="font-serif text-lg text-earth-800">Your cart</h2>
+    <button onclick="closeCart()" class="cursor-pointer text-earth-400 hover:text-earth-700 transition-colors" aria-label="Close cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="cart-items-list" class="cart-items"></div>
+  <div id="cart-footer" class="cart-footer" style="display:none">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Total</span>
+      <span id="cart-total" class="font-serif text-xl text-earth-800"></span>
+    </div>
+    <p class="font-sans text-[10px] text-earth-400 font-light mb-4">Shipping calculated at checkout. Free within Thailand.</p>
+    <button class="btn-outline w-full text-center cursor-pointer">Checkout →</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
+</body>
+</html>

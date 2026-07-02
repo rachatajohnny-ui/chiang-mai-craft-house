@@ -22,6 +22,7 @@ body { font-family: 'Raleway', sans-serif; background-color: #faf8f4; color: #2c
 .btn-dark { border-color: #c9bba8; color: #e8e0d4; }
 .btn-dark:hover { background: #e8e0d4; color: #1e1612; }
 .btn-sm { padding: 8px 18px; font-size: 10px; }
+.btn-half { flex: 1; text-align: center; padding: 9px 6px; font-size: 9px; letter-spacing: 0.12em; }
 
 /* Nav */
 .nav-link { position: relative; }
