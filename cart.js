@@ -9,7 +9,8 @@ let cart = JSON.parse(localStorage.getItem('cmch-cart') || '{}');
 async function loadProducts() {
   try {
     const res = await fetch('products.json', { cache: 'no-store' });
-    const list = await res.json();
+    const data = await res.json();
+    const list = data.products || [];
     list.forEach(p => {
       PRODUCTS[p.id] = {
         name: p.name,

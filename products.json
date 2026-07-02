@@ -1,90 +1,92 @@
-[
-  {
-    "id": "doi-suthep",
-    "name": "Doi Suthep",
-    "material": "Rattan",
-    "type": "pendant",
-    "typeLabel": "Pendant",
-    "price": 2800,
-    "dimensions": "⌀ 35cm · 45cm height",
-    "bg": "#d9cfc2",
-    "image": ""
-  },
-  {
-    "id": "nimman",
-    "name": "Nimman",
-    "material": "Bamboo",
-    "type": "pendant",
-    "typeLabel": "Pendant",
-    "price": 3400,
-    "dimensions": "⌀ 50cm · 60cm height",
-    "bg": "#c9bba8",
-    "image": ""
-  },
-  {
-    "id": "ping-river",
-    "name": "Ping River",
-    "material": "Rattan",
-    "type": "floor",
-    "typeLabel": "Floor Lamp",
-    "price": 5200,
-    "dimensions": "⌀ 40cm · 160cm total",
-    "bg": "#e8e0d4",
-    "image": ""
-  },
-  {
-    "id": "wualai",
-    "name": "Wualai",
-    "material": "Rattan",
-    "type": "table",
-    "typeLabel": "Table Lamp",
-    "price": 3200,
-    "dimensions": "⌀ 30cm · 42cm height",
-    "bg": "#d9cfc2",
-    "image": ""
-  },
-  {
-    "id": "mae-rim",
-    "name": "Mae Rim",
-    "material": "Bamboo",
-    "type": "cluster",
-    "typeLabel": "Cluster",
-    "price": 7800,
-    "dimensions": "3-pendant cluster · custom drop",
-    "bg": "#e8e0d4",
-    "image": ""
-  },
-  {
-    "id": "san-kamphaeng",
-    "name": "San Kamphaeng",
-    "material": "Bamboo",
-    "type": "wall",
-    "typeLabel": "Wall Sconce",
-    "price": 4200,
-    "dimensions": "W 28cm · H 18cm · D 12cm",
-    "bg": "#c9bba8",
-    "image": ""
-  },
-  {
-    "id": "chom-thong",
-    "name": "Chom Thong",
-    "material": "Rattan",
-    "type": "floor",
-    "typeLabel": "Arc Floor",
-    "price": 6400,
-    "dimensions": "⌀ 48cm · 165cm total",
-    "bg": "#d9cfc2",
-    "image": ""
-  },
-  {
-    "id": "lamphun",
-    "name": "Lamphun",
-    "material": "Bamboo",
-    "type": "table",
-    "typeLabel": "Table Lamp",
-    "price": 2600,
-    "dimensions": "⌀ 28cm · 38cm height",
-    "bg": "#e8e0d4",
-    "image": ""
-  }
-]
+{
+  "products": [
+    {
+      "id": "doi-suthep",
+      "name": "Doi Suthep",
+      "material": "Rattan",
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "price": 2800,
+      "dimensions": "⌀ 35cm · 45cm height",
+      "bg": "#d9cfc2",
+      "image": ""
+    },
+    {
+      "id": "nimman",
+      "name": "Nimman",
+      "material": "Bamboo",
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "price": 3400,
+      "dimensions": "⌀ 50cm · 60cm height",
+      "bg": "#c9bba8",
+      "image": ""
+    },
+    {
+      "id": "ping-river",
+      "name": "Ping River",
+      "material": "Rattan",
+      "type": "floor",
+      "typeLabel": "Floor Lamp",
+      "price": 5200,
+      "dimensions": "⌀ 40cm · 160cm total",
+      "bg": "#e8e0d4",
+      "image": ""
+    },
+    {
+      "id": "wualai",
+      "name": "Wualai",
+      "material": "Rattan",
+      "type": "table",
+      "typeLabel": "Table Lamp",
+      "price": 3200,
+      "dimensions": "⌀ 30cm · 42cm height",
+      "bg": "#d9cfc2",
+      "image": ""
+    },
+    {
+      "id": "mae-rim",
+      "name": "Mae Rim",
+      "material": "Bamboo",
+      "type": "cluster",
+      "typeLabel": "Cluster",
+      "price": 7800,
+      "dimensions": "3-pendant cluster · custom drop",
+      "bg": "#e8e0d4",
+      "image": ""
+    },
+    {
+      "id": "san-kamphaeng",
+      "name": "San Kamphaeng",
+      "material": "Bamboo",
+      "type": "wall",
+      "typeLabel": "Wall Sconce",
+      "price": 4200,
+      "dimensions": "W 28cm · H 18cm · D 12cm",
+      "bg": "#c9bba8",
+      "image": ""
+    },
+    {
+      "id": "chom-thong",
+      "name": "Chom Thong",
+      "material": "Rattan",
+      "type": "floor",
+      "typeLabel": "Arc Floor",
+      "price": 6400,
+      "dimensions": "⌀ 48cm · 165cm total",
+      "bg": "#d9cfc2",
+      "image": ""
+    },
+    {
+      "id": "lamphun",
+      "name": "Lamphun",
+      "material": "Bamboo",
+      "type": "table",
+      "typeLabel": "Table Lamp",
+      "price": 2600,
+      "dimensions": "⌀ 28cm · 38cm height",
+      "bg": "#e8e0d4",
+      "image": ""
+    }
+  ]
+}
