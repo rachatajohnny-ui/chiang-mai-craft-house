@@ -7,8 +7,8 @@
       "name": "Mok",
       "dimensions": "⌀ 32cm · 40cm height",
       "images": [
-        "/images/mok3.png",
         "/images/mok2.png",
+        "/images/mok3.png",
         "/images/1.png",
         "/images/mok4.png"
       ],
@@ -49,7 +49,10 @@
       "name": "Mon",
       "dimensions": "⌀ 25cm · 32cm height",
       "images": [
-        "/images/4.png"
+        "/images/mon3.png",
+        "/images/mon2.png",
+        "/images/4.png",
+        "/images/mon4.png"
       ],
       "type": "pendant",
       "typeLabel": "Pendant",
@@ -62,8 +65,8 @@
       "name": "Nuan",
       "dimensions": "⌀ 26cm · 33cm height",
       "images": [
-        "/images/nuan2.png",
         "/images/nuan3.png",
+        "/images/nuan2.png",
         "/images/3.png",
         "/images/nuan4.png"
       ],
@@ -78,8 +81,8 @@
       "name": "Rin",
       "dimensions": "⌀ 26cm · 33cm height",
       "images": [
-        "/images/rin2.png",
         "/images/rin3.png",
+        "/images/rin2.png",
         "/images/2.png",
         "/images/rin4.png"
       ],
