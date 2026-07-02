@@ -12,7 +12,7 @@ async function loadProducts() {
     const data = await res.json();
     const list = data.products || [];
     list.forEach(p => {
-      const images = (p.images || []).map(img => img.src).filter(Boolean);
+      const images = (p.images || []).filter(Boolean);
       PRODUCTS[p.id] = {
         name: p.name,
         sub: `${p.material} · ${p.typeLabel}`,
@@ -21,47 +21,64 @@ async function loadProducts() {
         images,
       };
     });
-    syncProductCards(list);
+    renderProductGrid(list);
   } catch (err) {
     console.error('Could not load products.json', err);
   }
 }
 
-// Updates price / name / type text on any product card already in the page markup
-// (index.html, collection.html) so the CMS-edited values show up without touching HTML.
-function syncProductCards(list) {
-  list.forEach(p => {
-    document.querySelectorAll(`[data-product="${p.id}"]`).forEach(btn => {
-      const priceEl = btn.closest('.flex')?.querySelector('span');
-      if (priceEl) priceEl.textContent = '฿' + p.price.toLocaleString();
+// Renders every product card entirely from products.json — this is the single source of
+// truth, so renaming, adding, or removing products in the CMS is reflected automatically
+// (a fixed set of hand-written HTML cards can't support that, only editing existing ones).
+function renderProductGrid(list) {
+  const collectionGrid = document.getElementById('product-grid');
+  if (collectionGrid) {
+    collectionGrid.innerHTML = list.map((p, i) => buildProductCardHTML(p, i, { size: 'md', showDimensions: true })).join('');
+  }
 
-      const card = btn.closest('article');
-      if (!card) return;
-      const nameEl = card.querySelector('h3');
-      if (nameEl) nameEl.textContent = p.name;
-      const typeEl = card.querySelector('p.uppercase, p[class*="uppercase"]');
-      if (typeEl) typeEl.textContent = `${p.material} · ${p.typeLabel}`;
+  const indexGrid = document.getElementById('index-product-grid');
+  if (indexGrid) {
+    const customCardHTML = indexGrid.querySelector('.custom-card')?.outerHTML || '';
+    const cardsHTML = list.slice(0, 5).map((p, i) => buildProductCardHTML(p, i, { size: 'lg', showDimensions: false })).join('');
+    indexGrid.innerHTML = cardsHTML + customCardHTML;
+  }
 
-      if (p.dimensions) {
-        const dimEl = [...card.querySelectorAll('p')].find(el => /cm|total/i.test(el.textContent));
-        if (dimEl) dimEl.textContent = p.dimensions;
-      }
+  document.querySelectorAll('#product-grid .pc-carousel, #index-product-grid .pc-carousel').forEach(initCarousel);
+}
 
-      if (card.dataset) {
-        card.dataset.type = p.type;
-        card.dataset.price = p.price;
-      }
+function buildProductCardHTML(p, index, opts) {
+  const bgCard = index % 2 === 0 ? 'bg-cream-50' : 'bg-cream-100';
+  const bgImg = ['bg-cream-300', 'bg-cream-400', 'bg-cream-200'][index % 3];
+  const images = p.images || [];
+  const media = images.length ? buildCarouselHTML(images, p.name) : genericLampSVG();
+  const dims = opts.showDimensions && p.dimensions
+    ? `<p class="font-sans text-[11px] text-earth-400 font-light mb-3">${p.dimensions}</p>`
+    : '';
+  const padClass = opts.size === 'lg' ? 'p-6' : 'p-5';
+  const nameClass = opts.size === 'lg' ? 'font-serif text-xl text-earth-800 mb-3' : 'font-serif text-lg text-earth-800 mb-1';
+  const btnClass = opts.size === 'lg' ? 'btn-outline text-[10px] px-4 py-2' : 'btn-outline btn-sm';
 
-      const images = (p.images || []).map(img => img.src).filter(Boolean);
-      if (images.length) {
-        const imgBox = card.querySelector('.product-img');
-        if (imgBox) {
-          imgBox.innerHTML = buildCarouselHTML(images, p.name);
-          initCarousel(imgBox.querySelector('.pc-carousel'));
-        }
-      }
-    });
-  });
+  return `
+    <article class="product-card ${bgCard} cursor-pointer" data-type="${p.type || ''}" data-price="${p.price}" aria-label="${p.name}">
+      <div class="product-img aspect-square ${bgImg} flex items-center justify-center overflow-hidden relative">${media}</div>
+      <div class="${padClass} ${bgCard}">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">${p.material || ''} · ${p.typeLabel || ''}</p>
+        <h3 class="${nameClass}">${p.name}</h3>
+        ${dims}
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-600">฿${(p.price || 0).toLocaleString()}</span>
+          <button class="${btnClass} cursor-pointer" data-product="${p.id}" onclick="addToCart('${p.id}')">Add to cart</button>
+        </div>
+      </div>
+    </article>`;
+}
+
+function genericLampSVG() {
+  return `<svg width="90" height="140" viewBox="0 0 90 140" fill="none" aria-hidden="true">
+    <line x1="45" y1="0" x2="45" y2="18" stroke="#8a7060" stroke-width="1.5"/>
+    <path d="M30 20 Q18 62 12 118 Q26 123 45 124 Q64 123 78 118 Q72 62 60 20 Z" fill="#c4a882" opacity="0.75"/>
+    <ellipse cx="45" cy="75" rx="18" ry="20" fill="#f5e0a0" opacity="0.22"/>
+  </svg>`;
 }
 
 // Builds a swipeable image carousel — dots + arrows appear only when there's more than one photo.
