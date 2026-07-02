@@ -23,7 +23,10 @@
       "name": "Kleeb",
       "dimensions": "⌀ 32cm · 32cm height",
       "images": [
-        "/images/7.png"
+        "/images/kleeb2.png",
+        "/images/kleeb3.png",
+        "/images/7.png",
+        "/images/kleeb4.png"
       ],
       "type": "pendant",
       "typeLabel": "Pendant",
@@ -38,7 +41,8 @@
       "images": [
         "/images/kloom2.png",
         "/images/kloom3.png",
-        "/images/6.png"
+        "/images/6.png",
+        "/images/kloom4.png"
       ],
       "type": "pendant",
       "typeLabel": "Pendant",
@@ -115,7 +119,10 @@
       "name": "Song",
       "dimensions": "⌀ 45cm · 55cm height",
       "images": [
-        "/images/8.png"
+        "/images/e43cb50d-1368-415e-a3ef-31c181c9d6b5.png",
+        "/images/8.png",
+        "/images/8e7b084c-c1ad-406c-bd4a-b2d414a462da.png",
+        "/images/cc416790-b76b-4403-ab8d-043b3df05649.png"
       ],
       "type": "pendant",
       "typeLabel": "Pendant",
