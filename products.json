@@ -1,92 +1,108 @@
 {
   "products": [
     {
+      "bg": "#c9bba8",
+      "material": "Rattan",
+      "price": 4500,
+      "name": "Mok",
+      "dimensions": "⌀ 32cm · 40cm height",
+      "images": [
+        "/images/1.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Mok"
+    },
+    {
       "bg": "#d9cfc2",
       "material": "Rattan",
       "price": 4500,
-      "name": "Doi Suthep",
-      "dimensions": "⌀ 35cm · 45cm height",
+      "name": "Kleeb",
+      "dimensions": "⌀ 32cm · 32cm height",
+      "images": [
+        "/images/7.png"
+      ],
       "type": "pendant",
       "typeLabel": "Pendant",
-      "id": "doi-suthep",
-      "images": [{ "src": "/images/7.png" }]
-    },
-    {
-      "bg": "#c9bba8",
-      "material": "Bamboo",
-      "price": 3400,
-      "name": "Nimman",
-      "dimensions": "⌀ 50cm · 60cm height",
-      "type": "pendant",
-      "typeLabel": "Pendant",
-      "id": "nimman",
-      "images": []
+      "id": "Kleeb"
     },
     {
       "bg": "#e8e0d4",
       "material": "Rattan",
-      "price": 5200,
-      "name": "Ping River",
-      "dimensions": "⌀ 40cm · 160cm total",
-      "type": "floor",
-      "typeLabel": "Floor Lamp",
-      "id": "ping-river",
-      "images": []
+      "price": 4500,
+      "name": "Kloom",
+      "dimensions": "⌀ 32cm · 32cm height",
+      "images": [
+        "/images/6.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Kloom"
     },
     {
       "bg": "#d9cfc2",
       "material": "Rattan",
-      "price": 3200,
-      "name": "Wualai",
-      "dimensions": "⌀ 30cm · 42cm height",
-      "type": "table",
-      "typeLabel": "Table Lamp",
-      "id": "wualai",
-      "images": []
+      "price": 4500,
+      "name": "Mon",
+      "dimensions": "⌀ 25cm · 32cm height",
+      "images": [
+        "/images/4.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Mon"
     },
     {
       "bg": "#e8e0d4",
-      "material": "Bamboo",
-      "price": 7800,
-      "name": "Mae Rim",
-      "dimensions": "3-pendant cluster · custom drop",
-      "type": "cluster",
-      "typeLabel": "Cluster",
-      "id": "mae-rim",
-      "images": []
+      "material": "Rattan",
+      "price": 4503,
+      "name": "Nuan",
+      "dimensions": "⌀ 26cm · 33cm height",
+      "images": [
+        "/images/3.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Nuan"
     },
     {
       "bg": "#c9bba8",
-      "material": "Bamboo",
-      "price": 4200,
-      "name": "San Kamphaeng",
-      "dimensions": "W 28cm · H 18cm · D 12cm",
-      "type": "wall",
-      "typeLabel": "Wall Sconce",
-      "id": "san-kamphaeng",
-      "images": []
+      "material": "Rattan",
+      "price": 4500,
+      "name": "Rin",
+      "dimensions": "⌀ 26cm · 33cm height",
+      "images": [
+        "/images/2.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Rin"
     },
     {
       "bg": "#d9cfc2",
       "material": "Rattan",
-      "price": 6400,
-      "name": "Chom Thong",
-      "dimensions": "⌀ 48cm · 165cm total",
-      "type": "floor",
-      "typeLabel": "Arc Floor",
-      "id": "chom-thong",
-      "images": []
+      "price": 4500,
+      "name": "Wai",
+      "dimensions": "⌀ 33cm · 42cm height",
+      "images": [
+        "/images/5.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Wai"
     },
     {
       "bg": "#e8e0d4",
-      "material": "Bamboo",
-      "price": 2600,
-      "name": "Lamphun",
-      "dimensions": "⌀ 28cm · 38cm height",
-      "type": "table",
-      "typeLabel": "Table Lamp",
-      "id": "lamphun",
-      "images": []
+      "material": "Rattan",
+      "price": 6500,
+      "name": "Song",
+      "dimensions": "⌀ 45cm · 55cm height",
+      "images": [
+        "/images/8.png"
+      ],
+      "type": "pendant",
+      "typeLabel": "Pendant",
+      "id": "Song"
     }
   ]
 }
