@@ -7,7 +7,10 @@
       "name": "Mok",
       "dimensions": "⌀ 32cm · 40cm height",
       "images": [
-        "/images/1.png"
+        "/images/mok3.png",
+        "/images/mok2.png",
+        "/images/1.png",
+        "/images/mok4.png"
       ],
       "type": "pendant",
       "typeLabel": "Pendant",
