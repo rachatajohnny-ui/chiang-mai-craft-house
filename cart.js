@@ -12,12 +12,13 @@ async function loadProducts() {
     const data = await res.json();
     const list = data.products || [];
     list.forEach(p => {
+      const images = (p.images || []).map(img => img.src).filter(Boolean);
       PRODUCTS[p.id] = {
         name: p.name,
         sub: `${p.material} · ${p.typeLabel}`,
         price: p.price,
         bg: p.bg || '#d9cfc2',
-        image: p.image || '',
+        images,
       };
     });
     syncProductCards(list);
@@ -51,14 +52,63 @@ function syncProductCards(list) {
         card.dataset.price = p.price;
       }
 
-      if (p.image) {
+      const images = (p.images || []).map(img => img.src).filter(Boolean);
+      if (images.length) {
         const imgBox = card.querySelector('.product-img');
         if (imgBox) {
-          imgBox.innerHTML = `<img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" />`;
+          imgBox.innerHTML = buildCarouselHTML(images, p.name);
+          initCarousel(imgBox.querySelector('.pc-carousel'));
         }
       }
     });
   });
+}
+
+// Builds a swipeable image carousel — dots + arrows appear only when there's more than one photo.
+function buildCarouselHTML(images, name) {
+  const slides = images.map(src => `<div class="pc-slide"><img src="${src}" alt="${name}" loading="lazy" /></div>`).join('');
+  const dots = images.length > 1
+    ? `<div class="pc-dots">${images.map((_, i) => `<button class="pc-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Photo ${i + 1}"></button>`).join('')}</div>`
+    : '';
+  const arrows = images.length > 1
+    ? `<button class="pc-arrow prev" data-dir="-1" aria-label="Previous photo">‹</button><button class="pc-arrow next" data-dir="1" aria-label="Next photo">›</button>`
+    : '';
+  return `<div class="pc-carousel" data-index="0"><div class="pc-track">${slides}</div>${dots}${arrows}</div>`;
+}
+
+// Wires up dot clicks, arrow clicks, and touch-swipe for a single carousel instance.
+function initCarousel(el) {
+  if (!el) return;
+  const track = el.querySelector('.pc-track');
+  const slideCount = el.querySelectorAll('.pc-slide').length;
+  let index = 0;
+
+  const goTo = i => {
+    index = (i + slideCount) % slideCount;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    el.querySelectorAll('.pc-dot').forEach((dot, di) => dot.classList.toggle('active', di === index));
+  };
+
+  el.querySelectorAll('.pc-dot').forEach(dot => {
+    dot.addEventListener('click', e => {
+      e.stopPropagation();
+      goTo(parseInt(dot.dataset.index, 10));
+    });
+  });
+
+  el.querySelectorAll('.pc-arrow').forEach(arrow => {
+    arrow.addEventListener('click', e => {
+      e.stopPropagation();
+      goTo(index + parseInt(arrow.dataset.dir, 10));
+    });
+  });
+
+  let touchStartX = 0;
+  el.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
+  }, { passive: true });
 }
 
 function saveCart() {
@@ -128,7 +178,7 @@ function renderCartItems() {
     return `
     <div class="cart-item">
       <div style="height:72px;width:72px;background:${p.bg};display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;">
-        ${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover" />` : lampSVG(id)}
+        ${p.images && p.images[0] ? `<img src="${p.images[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover" />` : lampSVG(id)}
       </div>
       <div>
         <p style="font-family:'Lora',serif;font-size:14px;color:#2c2420;margin-bottom:2px">${p.name}</p>

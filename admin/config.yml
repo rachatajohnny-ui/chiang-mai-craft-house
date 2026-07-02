@@ -28,4 +28,8 @@ collections:
               - { label: "Price (THB)", name: "price", widget: "number", value_type: "int" }
               - { label: "Dimensions", name: "dimensions", widget: "string" }
               - { label: "Card background color", name: "bg", widget: "color", default: "#d9cfc2" }
-              - { label: "Product photo", name: "image", widget: "image", required: false }
+              - label: "Product photos"
+                name: "images"
+                widget: "list"
+                required: false
+                field: { label: "Photo", name: "src", widget: "image" }
