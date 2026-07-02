@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Chiang Mai Craft House</title>
+  <meta name="description" content="เรื่องราวของ Chiang Mai Craft House — แบรนด์โคมไฟหวายและไม้ไผ่ทอมือจากเชียงใหม่" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="shared.css" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { serif: ['Lora','Georgia','serif'], sans: ['Raleway','system-ui','sans-serif'] },
+        colors: {
+          cream: { 50:'#faf8f4', 100:'#f2ede5', 200:'#e8e0d4', 300:'#d9cfc2', 400:'#c9bba8' },
+          earth: { 100:'#c4a882', 200:'#b09070', 300:'#9c8070', 400:'#8a7060', 500:'#6b5c4e', 600:'#4a3c30', 700:'#2c2420', 800:'#1e1612' }
+        }
+      }}
+    }
+  </script>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-sm border-b border-cream-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-serif text-base text-earth-700 tracking-wide whitespace-nowrap">Chiang Mai <em class="italic text-earth-500">Craft House</em></a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="collection.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Collection</a>
+        <a href="craft.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Our Craft</a>
+        <a href="about.html" class="nav-link active font-sans text-[11px] tracking-widest uppercase text-earth-700">About</a>
+        <a href="contact.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-5">
+        <button onclick="openCart()" class="cursor-pointer text-earth-500 hover:text-earth-700 transition-colors relative" aria-label="Shopping bag">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count absolute -top-2 -right-2 w-4 h-4 bg-earth-700 text-cream-50 text-[9px] rounded-full hidden items-center justify-center font-sans">0</span>
+        </button>
+      </div>
+      <button id="menu-btn" class="md:hidden cursor-pointer text-earth-500" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-cream-50 border-t border-cream-200">
+    <div class="px-6 py-5 flex flex-col gap-5">
+      <a href="collection.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Collection</a>
+      <a href="craft.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Our Craft</a>
+      <a href="about.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-700">About</a>
+      <a href="contact.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="pt-16 bg-earth-800 min-h-[55vh] flex items-end">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full">
+    <div class="max-w-2xl">
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-5 fade-up">About us</p>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream-100 leading-tight mb-6 fade-up">
+        A house built on<br><em class="italic text-earth-200">craft and light</em>
+      </h1>
+      <p class="font-sans text-sm leading-relaxed text-earth-300 font-light max-w-md fade-up">
+        Founded in Chiang Mai in 2026 by a founder and designer who shared one belief — that the best objects are made slowly, with full attention.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ ORIGIN STORY ═══ -->
+<section class="grid md:grid-cols-2" aria-labelledby="story-heading">
+  <div class="bg-cream-400 min-h-80 flex items-center justify-center">
+    <svg class="w-40 md:w-52 lamp-sway" viewBox="0 0 200 280" fill="none" aria-label="Rattan pendant lamp" role="img">
+      <line x1="100" y1="0" x2="100" y2="42" stroke="#8a7060" stroke-width="2"/>
+      <ellipse cx="100" cy="47" rx="16" ry="6" fill="#7a6050" opacity="0.75"/>
+      <path d="M72 54 Q56 138 36 218 Q60 226 100 228 Q140 226 164 218 Q144 138 128 54 Z" fill="#c4a882" opacity="0.88"/>
+      <path d="M71 85 Q100 91 129 85" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M64 118 Q100 125 136 118" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M54 152 Q100 159 146 152" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M44 185 Q100 192 156 185" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <path d="M36 214 Q100 221 164 214" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <line x1="36" y1="218" x2="164" y2="218" stroke="#9c7e60" stroke-width="1"/>
+      <ellipse cx="100" cy="145" rx="38" ry="44" fill="#f5e0a0" opacity="0.22"/>
+    </svg>
+  </div>
+  <div class="bg-cream-100 px-8 md:px-16 lg:px-20 py-20 flex flex-col justify-center">
+    <h2 id="story-heading" class="font-serif text-3xl md:text-4xl text-earth-800 mb-6 fade-up">How it <em class="italic text-earth-500">started</em></h2>
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-5 fade-up">
+      Khun John had been running a business in Bangkok for several years when he moved to Chiang Mai and discovered the world of traditional weaving. He met Khun Alice — a talented designer with a passion for natural materials — and together they saw an opportunity to bring handcrafted lamps to more homes.
+    </p>
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-5 fade-up">
+      They spent a year working together before selling a single lamp — learning from each other, refining shapes, and building trust with the families in the surrounding villages who would become our workshop community.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ VALUES ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-50" aria-labelledby="values-heading">
+  <div class="max-w-7xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">What we believe</p>
+    <h2 id="values-heading" class="font-serif text-4xl text-earth-800 mb-14 fade-up">How we <em class="italic text-earth-500">work</em></h2>
+    <div class="grid md:grid-cols-2 gap-px bg-cream-300">
+      <div class="bg-cream-100 p-8 fade-up">
+        <div class="w-8 h-px bg-earth-400 mb-5"></div>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Pay fairly</h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">We pay our weavers above the regional average and share a portion of profit with the village cooperatives. We believe good work deserves fair compensation — and that this is the only way to sustain the craft.</p>
+      </div>
+      <div class="bg-cream-50 p-8 fade-up">
+        <div class="w-8 h-px bg-earth-400 mb-5"></div>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">No compromise on materials</h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">We use only mountain-harvested rattan and highland bamboo, prepared without chemical treatment. The natural variation in colour and texture is not a flaw — it is the material speaking for itself.</p>
+      </div>
+      <div class="bg-cream-100 p-8 fade-up">
+        <div class="w-8 h-px bg-earth-400 mb-5"></div>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Small and intentional</h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">We work with eight artisan families and have no plans to scale beyond what we can oversee directly. Growth that compromises quality is not growth we want.</p>
+      </div>
+      <div class="bg-cream-50 p-8 fade-up">
+        <div class="w-8 h-px bg-earth-400 mb-5"></div>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Honest about time</h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">When something takes longer than expected, we tell you. We do not send automated delay emails — we call or message directly. Every order has a person responsible for it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOUNDERS ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-200" aria-labelledby="founders-heading">
+  <div class="max-w-7xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">The founders</p>
+    <h2 id="founders-heading" class="font-serif text-4xl text-earth-800 mb-14 fade-up">The people <em class="italic text-earth-500">behind it</em></h2>
+    <div class="grid md:grid-cols-2 gap-px bg-cream-300">
+      <div class="bg-cream-200 p-10 fade-up">
+        <div class="w-20 h-20 bg-cream-400 rounded-full mb-6 flex items-center justify-center">
+          <svg width="36" height="36" fill="none" stroke="#8a7060" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl text-earth-800 mb-1">Khun John</h3>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-5">Co-founder · Business & Operations</p>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-4">Moved to Chiang Mai in 2022 and founded Chiang Mai Craft House with a vision to connect traditional Thai weaving craft with modern homes. He oversees operations, partnerships, and ensures every customer relationship is handled with care.</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Chiang Mai, since 2022</p>
+      </div>
+      <div class="bg-cream-100 p-10 fade-up">
+        <div class="w-20 h-20 bg-cream-300 rounded-full mb-6 flex items-center justify-center">
+          <svg width="36" height="36" fill="none" stroke="#8a7060" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl text-earth-800 mb-1">Khun Alice</h3>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-5">Co-founder · Brand & Marketing</p>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-4">Born and raised in Chiang Mai, Alice grew up surrounded by the craft traditions of Northern Thailand. She leads all brand direction and marketing, bringing a local eye and a deep appreciation for the region's weaving heritage to everything we make.</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Chiang Mai</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CTA ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-200" aria-label="Call to action">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 fade-up">
+    <div>
+      <h2 class="font-serif text-3xl text-earth-800 mb-2">Come and <em class="italic text-earth-500">see us</em></h2>
+      <p class="font-sans text-sm text-earth-500 font-light">Our showroom is open Tuesday – Sunday, 10am – 7pm.</p>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <a href="contact.html" class="btn-outline">Visit the workshop →</a>
+      <a href="collection.html" class="btn-outline btn-muted">Browse collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div id="cart-overlay" role="dialog" aria-modal="true" aria-label="Shopping cart"></div>
+<aside id="cart-sidebar" aria-label="Cart">
+  <div class="cart-header">
+    <h2 class="font-serif text-lg text-earth-800">Your cart</h2>
+    <button onclick="closeCart()" class="cursor-pointer text-earth-400 hover:text-earth-700 transition-colors" aria-label="Close cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="cart-items-list" class="cart-items"></div>
+  <div id="cart-footer" class="cart-footer" style="display:none">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Total</span>
+      <span id="cart-total" class="font-serif text-xl text-earth-800"></span>
+    </div>
+    <p class="font-sans text-[10px] text-earth-400 font-light mb-4">Shipping calculated at checkout. Free within Thailand.</p>
+    <button class="btn-outline w-full text-center cursor-pointer">Checkout →</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
+</body>
+</html>

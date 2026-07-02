@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Visit — Chiang Mai Craft House</title>
+  <meta name="description" content="มาเยี่ยมชม showroom ของเราในนิมมานเหมินทร์ เชียงใหม่ หรือสั่งทำโคมไฟแบบ Custom" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="shared.css" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { serif: ['Lora','Georgia','serif'], sans: ['Raleway','system-ui','sans-serif'] },
+        colors: {
+          cream: { 50:'#faf8f4', 100:'#f2ede5', 200:'#e8e0d4', 300:'#d9cfc2', 400:'#c9bba8' },
+          earth: { 100:'#c4a882', 200:'#b09070', 300:'#9c8070', 400:'#8a7060', 500:'#6b5c4e', 600:'#4a3c30', 700:'#2c2420', 800:'#1e1612' }
+        }
+      }}
+    }
+  </script>
+  <style>
+    /* Map placeholder */
+    .map-area { background: #e8e0d4; position: relative; overflow: hidden; }
+    .map-area::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(#c9bba8 1px, transparent 1px),
+        linear-gradient(90deg, #c9bba8 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+    }
+    /* Form styles */
+    .form-field input, .form-field textarea, .form-field select {
+      width: 100%; background: transparent;
+      border: none; border-bottom: 1px solid #d9cfc2;
+      padding: 10px 0; font-family: 'Raleway', sans-serif;
+      font-size: 14px; font-weight: 300; color: #2c2420;
+      transition: border-color 0.2s ease;
+      outline: none; resize: none;
+    }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: #c9bba8; }
+    .form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-bottom-color: #8a7060; }
+    .form-field label { font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a7060; display: block; margin-bottom: 4px; }
+    .form-field select { color: #6b5c4e; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7060' stroke-width='1.2'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; }
+    .form-success { display: none; text-align: center; padding: 40px 20px; }
+    .form-success.show { display: block; }
+    #contact-form.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-sm border-b border-cream-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-serif text-base text-earth-700 tracking-wide whitespace-nowrap">Chiang Mai <em class="italic text-earth-500">Craft House</em></a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="collection.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Collection</a>
+        <a href="craft.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Our Craft</a>
+        <a href="about.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">About</a>
+        <a href="contact.html" class="nav-link active font-sans text-[11px] tracking-widest uppercase text-earth-700">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-5">
+        <button onclick="openCart()" class="cursor-pointer text-earth-500 hover:text-earth-700 transition-colors relative" aria-label="Shopping bag">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count absolute -top-2 -right-2 w-4 h-4 bg-earth-700 text-cream-50 text-[9px] rounded-full hidden items-center justify-center font-sans">0</span>
+        </button>
+      </div>
+      <button id="menu-btn" class="md:hidden cursor-pointer text-earth-500" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-cream-50 border-t border-cream-200">
+    <div class="px-6 py-5 flex flex-col gap-5">
+      <a href="collection.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Collection</a>
+      <a href="craft.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Our Craft</a>
+      <a href="about.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">About</a>
+      <a href="contact.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-700">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<header class="pt-16 bg-cream-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 md:py-24">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">Get in touch</p>
+    <h1 class="font-serif text-5xl md:text-6xl text-earth-800 mb-5 fade-up">Visit & <em class="italic text-earth-500">contact</em></h1>
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light max-w-md fade-up">Come see the lamps in person at our Hang Dong showroom, or reach us for custom orders, stockist enquiries, and anything else.</p>
+  </div>
+</header>
+
+<!-- ═══ MAP + INFO ═══ -->
+<section class="grid lg:grid-cols-2" aria-label="Location">
+
+  <!-- Map placeholder -->
+  <div class="map-area min-h-80 lg:min-h-[480px] flex items-center justify-center relative">
+    <div class="relative z-10 text-center">
+      <div class="w-12 h-12 bg-earth-700 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg width="20" height="20" fill="none" stroke="#faf8f4" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <p class="font-serif italic text-base text-earth-700">Hang Dong</p>
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500 mt-1">Chiang Mai 50230, Thailand</p>
+      <a href="https://maps.google.com/?q=Hang+Dong+Chiang+Mai+50230" target="_blank" rel="noopener noreferrer"
+         class="inline-block mt-5 btn-outline btn-sm">Open in Google Maps →</a>
+    </div>
+    <!-- Decorative grid lines suggesting a map -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute left-1/3 top-0 bottom-0 border-l border-cream-300 opacity-60"></div>
+      <div class="absolute left-2/3 top-0 bottom-0 border-l border-cream-300 opacity-40"></div>
+      <div class="absolute top-1/3 left-0 right-0 border-t border-cream-300 opacity-60"></div>
+      <div class="absolute top-2/3 left-0 right-0 border-t border-cream-300 opacity-40"></div>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="bg-cream-50 px-8 md:px-14 py-14 flex flex-col justify-center">
+    <div class="space-y-10">
+
+      <div class="fade-up">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3">Address</p>
+        <address class="not-italic font-sans text-sm leading-relaxed text-earth-600 font-light">
+          Hang Dong<br>
+          Chiang Mai 50230, Thailand
+        </address>
+      </div>
+
+      <div class="fade-up">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3">Opening hours</p>
+        <div class="font-sans text-sm text-earth-600 font-light space-y-1">
+          <div class="flex justify-between max-w-xs">
+            <span>Monday – Saturday</span>
+            <span>10:00 – 19:00</span>
+          </div>
+          <div class="flex justify-between max-w-xs text-earth-400">
+            <span>Sunday</span>
+            <span>Closed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3">Contact</p>
+        <div class="space-y-2 font-sans text-sm text-earth-600 font-light">
+          <p><a href="tel:+66902353692" class="hover:text-earth-800 transition-colors cursor-pointer">Tel. / WhatsApp: (+66) 902353692</a></p>
+          <p><a href="mailto:Chiangmaicrafthouse@gmail.com" class="hover:text-earth-800 transition-colors cursor-pointer">Chiangmaicrafthouse@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3">Follow</p>
+        <div class="flex gap-5">
+          <a href="#" class="flex items-center gap-2 font-sans text-xs text-earth-500 hover:text-earth-700 transition-colors cursor-pointer" aria-label="Instagram">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @chiangmaicrafthouse
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GETTING HERE ═══ -->
+<section class="py-14 px-6 md:px-12 bg-cream-100 border-t border-cream-200" aria-labelledby="directions-heading">
+  <div class="max-w-7xl mx-auto">
+    <h2 id="directions-heading" class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-8 fade-up">Getting here</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="fade-up">
+        <div class="flex items-center gap-3 mb-3">
+          <svg width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500">By car / Grab</p>
+        </div>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Head south from Chiang Mai city centre towards Hang Dong. We are located in Hang Dong district — search "Chiang Mai Craft House" on Google Maps for turn-by-turn directions.</p>
+      </div>
+      <div class="fade-up">
+        <div class="flex items-center gap-3 mb-3">
+          <svg width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500">Parking</p>
+        </div>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Free street parking available in front of the showroom. Hang Dong is easy to reach by car or Grab from Chiang Mai city centre — approximately 15–20 minutes.</p>
+      </div>
+      <div class="fade-up">
+        <div class="flex items-center gap-3 mb-3">
+          <svg width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500">From old city</p>
+        </div>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">About 15–20 minutes by Grab from Tha Phae Gate or Nimman area. Search "Hang Dong, Chiang Mai 50230" — or call us and we will guide you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT FORM ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-50" aria-labelledby="contact-form-heading">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+
+    <!-- Left: text -->
+    <div class="fade-up">
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">Write to us</p>
+      <h2 id="contact-form-heading" class="font-serif text-4xl text-earth-800 mb-6">Send us a <em class="italic text-earth-500">message</em></h2>
+      <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-8 max-w-sm">We read every message ourselves. Custom orders, stockist enquiries, press, or just a question about rattan — we will reply within two working days.</p>
+
+      <div class="space-y-5">
+        <div class="flex items-start gap-4">
+          <svg class="flex-shrink-0 mt-0.5" width="14" height="14" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Custom orders</p>
+            <p class="font-sans text-xs text-earth-500 font-light">From ฿4,500 · 3–5 week lead time · unlimited dimensions</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <svg class="flex-shrink-0 mt-0.5" width="14" height="14" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          <div>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Trade & stockists</p>
+            <p class="font-sans text-xs text-earth-500 font-light">We work with hotels, restaurants, and interior designers. Wholesale pricing available.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <svg class="flex-shrink-0 mt-0.5" width="14" height="14" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Press & editorial</p>
+            <p class="font-sans text-xs text-earth-500 font-light">High-res images and press kit available on request.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div class="fade-up">
+      <form id="contact-form" novalidate class="space-y-7" onsubmit="handleFormSubmit(event)">
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="form-field">
+            <label for="f-name">First name *</label>
+            <input type="text" id="f-name" name="first_name" required autocomplete="given-name" placeholder="Prae" />
+          </div>
+          <div class="form-field">
+            <label for="f-surname">Last name</label>
+            <input type="text" id="f-surname" name="last_name" autocomplete="family-name" placeholder="Srithanon" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="f-email">Email address *</label>
+          <input type="email" id="f-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        </div>
+
+        <div class="form-field">
+          <label for="f-subject">Subject</label>
+          <select id="f-subject" name="subject" aria-label="Message subject">
+            <option value="">Select a topic</option>
+            <option value="custom">Custom order enquiry</option>
+            <option value="order">Existing order</option>
+            <option value="trade">Trade / stockist</option>
+            <option value="press">Press & editorial</option>
+            <option value="visit">Visit the workshop</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="f-message">Message *</label>
+          <textarea id="f-message" name="message" rows="5" required placeholder="Tell us what you have in mind — dimensions, space, mood, anything helps."></textarea>
+        </div>
+
+        <p id="form-error" class="font-sans text-xs text-red-700 hidden" role="alert" aria-live="polite"></p>
+
+        <button type="submit" id="submit-btn" class="btn-outline w-full text-center cursor-pointer">Send message →</button>
+        <p class="font-sans text-[10px] text-earth-400">We reply within two working days.</p>
+      </form>
+
+      <!-- Success state -->
+      <div id="form-success" class="form-success">
+        <svg class="mx-auto mb-5" width="40" height="40" fill="none" stroke="#8a7060" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3 class="font-serif text-2xl text-earth-800 mb-3">Message sent</h3>
+        <p class="font-sans text-sm text-earth-500 font-light">Thank you — we will be in touch within two working days.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-200" aria-labelledby="faq-heading">
+  <div class="max-w-3xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">Common questions</p>
+    <h2 id="faq-heading" class="font-serif text-4xl text-earth-800 mb-12 fade-up">Before you <em class="italic text-earth-500">write</em></h2>
+
+    <div class="space-y-0" id="faq-list">
+      <div class="faq-item border-t border-cream-300 fade-up">
+        <button class="faq-btn w-full flex justify-between items-start py-6 cursor-pointer text-left" aria-expanded="false">
+          <span class="font-serif text-lg text-earth-800 pr-8">How long does a custom order take?</span>
+          <svg class="faq-icon flex-shrink-0 mt-1 transition-transform duration-300" width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer hidden pb-6">
+          <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Custom orders typically take 3–5 weeks from confirmation of design and deposit payment. We will give you a specific date when you confirm your order, and we keep you updated throughout.</p>
+        </div>
+      </div>
+      <div class="faq-item border-t border-cream-300 fade-up">
+        <button class="faq-btn w-full flex justify-between items-start py-6 cursor-pointer text-left" aria-expanded="false">
+          <span class="font-serif text-lg text-earth-800 pr-8">Do you ship internationally?</span>
+          <svg class="faq-icon flex-shrink-0 mt-1 transition-transform duration-300" width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer hidden pb-6">
+          <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Yes — we ship to most countries. International shipping is calculated at checkout based on dimensions and destination. We use EMS for smaller lamps and freight for floor lamps and cluster pendants. We have shipped to Singapore, Japan, Australia, the UK, and the US.</p>
+        </div>
+      </div>
+      <div class="faq-item border-t border-cream-300 fade-up">
+        <button class="faq-btn w-full flex justify-between items-start py-6 cursor-pointer text-left" aria-expanded="false">
+          <span class="font-serif text-lg text-earth-800 pr-8">What bulb should I use?</span>
+          <svg class="faq-icon flex-shrink-0 mt-1 transition-transform duration-300" width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer hidden pb-6">
+          <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">All our lamps use E27 sockets and are rated for LED bulbs up to 15W. We recommend warm white LED (2700–3000K) for the best effect through the weave. Edison-style filament bulbs also work beautifully and are available in our showroom.</p>
+        </div>
+      </div>
+      <div class="faq-item border-t border-cream-300 fade-up">
+        <button class="faq-btn w-full flex justify-between items-start py-6 cursor-pointer text-left" aria-expanded="false">
+          <span class="font-serif text-lg text-earth-800 pr-8">How do I care for my lamp?</span>
+          <svg class="faq-icon flex-shrink-0 mt-1 transition-transform duration-300" width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer hidden pb-6">
+          <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Dust with a soft brush or dry cloth. Avoid direct moisture. Keep away from air conditioning vents — sustained dry air can cause splitting over time. Rattan is a living material and will develop a natural patina as it ages. We include a full care card with every lamp.</p>
+        </div>
+      </div>
+      <div class="faq-item border-t border-b border-cream-300 fade-up">
+        <button class="faq-btn w-full flex justify-between items-start py-6 cursor-pointer text-left" aria-expanded="false">
+          <span class="font-serif text-lg text-earth-800 pr-8">Can I return or exchange a lamp?</span>
+          <svg class="faq-icon flex-shrink-0 mt-1 transition-transform duration-300" width="16" height="16" fill="none" stroke="#8a7060" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer hidden pb-6">
+          <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Because every lamp is made to order, we do not accept returns for change of mind. If your lamp arrives damaged, we will repair or replace it at no cost. Please photograph any damage on arrival and contact us within 48 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER STRIP ═══ -->
+<section class="py-12 px-6 md:px-12 bg-earth-800" aria-label="Footer CTA">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 fade-up">
+    <div>
+      <p class="font-serif italic text-lg text-cream-200 mb-1">Still have a question?</p>
+      <p class="font-sans text-xs text-earth-400 font-light">Call or WhatsApp (+66) 902353692 or come in — we are open Mon–Sat.</p>
+    </div>
+    <a href="collection.html" class="btn-outline btn-dark flex-shrink-0">Browse the collection →</a>
+  </div>
+</section>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div id="cart-overlay" role="dialog" aria-modal="true" aria-label="Shopping cart"></div>
+<aside id="cart-sidebar" aria-label="Cart">
+  <div class="cart-header">
+    <h2 class="font-serif text-lg text-earth-800">Your cart</h2>
+    <button onclick="closeCart()" class="cursor-pointer text-earth-400 hover:text-earth-700 transition-colors" aria-label="Close cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="cart-items-list" class="cart-items"></div>
+  <div id="cart-footer" class="cart-footer" style="display:none">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Total</span>
+      <span id="cart-total" class="font-serif text-xl text-earth-800"></span>
+    </div>
+    <p class="font-sans text-[10px] text-earth-400 font-light mb-4">Shipping calculated at checkout. Free within Thailand.</p>
+    <button class="btn-outline w-full text-center cursor-pointer">Checkout →</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = !answer.classList.contains('hidden');
+
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-btn').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.querySelector('.faq-icon')?.style.removeProperty('transform');
+      });
+
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        icon.style.transform = 'rotate(45deg)';
+      }
+    });
+  });
+
+  // Form submission
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const errEl = document.getElementById('form-error');
+    errEl.classList.add('hidden');
+
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const msg = document.getElementById('f-message').value.trim();
+
+    if (!name) { showError('Please enter your name.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Please enter a valid email address.'); return; }
+    if (!msg) { showError('Please write a message.'); return; }
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // Simulate send
+    setTimeout(() => {
+      document.getElementById('contact-form').classList.add('hidden');
+      document.getElementById('form-success').classList.add('show');
+    }, 900);
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('form-error');
+    el.textContent = msg;
+    el.classList.remove('hidden');
+  }
+</script>
+</body>
+</html>

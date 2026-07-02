@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Craft — Chiang Mai Craft House</title>
+  <meta name="description" content="กระบวนการทอมือจากหวายและไม้ไผ่ โดยช่างฝีมือครอบครัวในเชียงใหม่ สืบทอดมาหลายชั่วอายุคน" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="shared.css" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { serif: ['Lora','Georgia','serif'], sans: ['Raleway','system-ui','sans-serif'] },
+        colors: {
+          cream: { 50:'#faf8f4', 100:'#f2ede5', 200:'#e8e0d4', 300:'#d9cfc2', 400:'#c9bba8' },
+          earth: { 100:'#c4a882', 200:'#b09070', 300:'#9c8070', 400:'#8a7060', 500:'#6b5c4e', 600:'#4a3c30', 700:'#2c2420', 800:'#1e1612' }
+        }
+      }}
+    }
+  </script>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-sm border-b border-cream-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="font-serif text-base text-earth-700 tracking-wide whitespace-nowrap">Chiang Mai <em class="italic text-earth-500">Craft House</em></a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="collection.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Collection</a>
+        <a href="craft.html" class="nav-link active font-sans text-[11px] tracking-widest uppercase text-earth-700">Our Craft</a>
+        <a href="about.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">About</a>
+        <a href="contact.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-5">
+        <button onclick="openCart()" class="cursor-pointer text-earth-500 hover:text-earth-700 transition-colors relative" aria-label="Shopping bag">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count absolute -top-2 -right-2 w-4 h-4 bg-earth-700 text-cream-50 text-[9px] rounded-full hidden items-center justify-center font-sans">0</span>
+        </button>
+      </div>
+      <button id="menu-btn" class="md:hidden cursor-pointer text-earth-500" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-cream-50 border-t border-cream-200">
+    <div class="px-6 py-5 flex flex-col gap-5">
+      <a href="collection.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Collection</a>
+      <a href="craft.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-700">Our Craft</a>
+      <a href="about.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">About</a>
+      <a href="contact.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="pt-16 min-h-[60vh] bg-cream-400 flex items-end">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full">
+    <div class="max-w-2xl">
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500 mb-5 fade-up">The craft</p>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-earth-800 leading-tight mb-6 fade-up">
+        Made in the<br><em class="italic text-earth-600">old way</em>
+      </h1>
+      <p class="font-sans text-sm leading-relaxed text-earth-600 font-light max-w-md fade-up">
+        Every lamp begins as rattan or bamboo growing in the mountains north of Chiang Mai. Between the forest and your home is a process that cannot be rushed.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ PULL QUOTE ═══ -->
+<section class="bg-cream-200 py-20 px-6 md:px-12">
+  <div class="max-w-3xl mx-auto fade-up">
+    <blockquote cite="Khun Malee">
+      <p class="font-serif italic text-2xl md:text-3xl leading-relaxed text-earth-700 mb-6">
+        "We let the rattan dry slowly in mountain air before weaving — the light it makes is warmer for it. You cannot fake this with a machine."
+      </p>
+      <footer class="font-sans text-[10px] tracking-widest uppercase text-earth-400">— Khun Malee, Head Weaver · San Kamphaeng village</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ═══ PROCESS STEPS ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-50" aria-labelledby="process-heading">
+  <div class="max-w-7xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">The process</p>
+    <h2 id="process-heading" class="font-serif text-4xl md:text-5xl text-earth-800 mb-16 fade-up">From forest to <em class="italic text-earth-500">light</em></h2>
+
+    <div class="space-y-0">
+
+      <!-- Step 1 -->
+      <div class="grid md:grid-cols-2 border-t border-cream-300 fade-up">
+        <div class="py-12 md:py-16 pr-0 md:pr-16 flex flex-col justify-center">
+          <div class="flex items-start gap-5 mb-5">
+            <span class="font-serif text-4xl text-cream-300 leading-none select-none">01</span>
+            <div>
+              <h3 class="font-serif text-2xl text-earth-800 mb-3">Harvest</h3>
+              <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">
+                Rattan is harvested by hand from forests above 800 metres, where slower growth produces denser, more flexible cane. We work only with families who harvest sustainably — taking no more than one third of each plant per season.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-cream-300 min-h-52 md:min-h-0 flex items-center justify-center">
+          <svg width="160" height="120" viewBox="0 0 160 120" fill="none" aria-label="Rattan harvesting illustration" role="img">
+            <path d="M20 100 Q40 60 80 30 Q100 18 130 10" stroke="#8a7060" stroke-width="1.5" fill="none"/>
+            <path d="M30 110 Q55 65 90 38 Q112 24 140 16" stroke="#9c8070" stroke-width="1" fill="none" opacity="0.6"/>
+            <path d="M10 90 Q32 55 68 26 Q88 12 118 4" stroke="#9c8070" stroke-width="1" fill="none" opacity="0.4"/>
+            <ellipse cx="80" cy="30" rx="8" ry="4" transform="rotate(-30 80 30)" fill="#c4a882" opacity="0.7"/>
+            <ellipse cx="130" cy="10" rx="7" ry="3" transform="rotate(-20 130 10)" fill="#c4a882" opacity="0.6"/>
+            <ellipse cx="40" cy="60" rx="7" ry="3" transform="rotate(-35 40 60)" fill="#c4a882" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="grid md:grid-cols-2 border-t border-cream-300 fade-up">
+        <div class="bg-cream-200 min-h-52 md:min-h-0 flex items-center justify-center order-last md:order-first">
+          <svg width="160" height="120" viewBox="0 0 160 120" fill="none" aria-label="Drying rattan illustration" role="img">
+            <line x1="10" y1="20" x2="150" y2="20" stroke="#9c8070" stroke-width="1.5"/>
+            <line x1="10" y1="20" x2="10" y2="110" stroke="#9c8070" stroke-width="1.5"/>
+            <line x1="150" y1="20" x2="150" y2="110" stroke="#9c8070" stroke-width="1.5"/>
+            <line x1="30" y1="20" x2="30" y2="20" stroke="#c4a882" stroke-width="0"/>
+            <!-- Hanging strands -->
+            <path d="M40 20 Q38 65 40 100" stroke="#c4a882" stroke-width="2" fill="none" opacity="0.8"/>
+            <path d="M60 20 Q62 70 60 105" stroke="#b89e7c" stroke-width="2" fill="none" opacity="0.8"/>
+            <path d="M80 20 Q78 60 80 98" stroke="#c4a882" stroke-width="2" fill="none" opacity="0.8"/>
+            <path d="M100 20 Q102 68 100 102" stroke="#b89e7c" stroke-width="2" fill="none" opacity="0.8"/>
+            <path d="M120 20 Q118 63 120 100" stroke="#c4a882" stroke-width="2" fill="none" opacity="0.8"/>
+            <!-- Sun -->
+            <circle cx="140" cy="40" r="12" fill="#f5e0a0" opacity="0.5"/>
+            <line x1="140" y1="24" x2="140" y2="20" stroke="#f5e0a0" stroke-width="1" opacity="0.7"/>
+            <line x1="150" y1="28" x2="153" y2="25" stroke="#f5e0a0" stroke-width="1" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="py-12 md:py-16 pl-0 md:pl-16 flex flex-col justify-center">
+          <div class="flex items-start gap-5 mb-5">
+            <span class="font-serif text-4xl text-cream-300 leading-none select-none">02</span>
+            <div>
+              <h3 class="font-serif text-2xl text-earth-800 mb-3">Dry slowly</h3>
+              <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">
+                Freshly cut rattan is hung in open-air structures and dried for two to four weeks in mountain air. This slow drying is what gives the cane its characteristic warm golden colour. Any faster and the rattan becomes brittle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="grid md:grid-cols-2 border-t border-cream-300 fade-up">
+        <div class="py-12 md:py-16 pr-0 md:pr-16 flex flex-col justify-center">
+          <div class="flex items-start gap-5 mb-5">
+            <span class="font-serif text-4xl text-cream-300 leading-none select-none">03</span>
+            <div>
+              <h3 class="font-serif text-2xl text-earth-800 mb-3">Split & prepare</h3>
+              <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">
+                Dried cane is split by hand with a blade into strips of uniform width — a skill that takes years to master. Each strip is checked for evenness by feel. Strips that don't meet standard are set aside for smaller decorative work.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-cream-300 min-h-52 md:min-h-0 flex items-center justify-center">
+          <svg width="160" height="120" viewBox="0 0 160 120" fill="none" aria-label="Splitting rattan illustration" role="img">
+            <!-- Cane cylinder -->
+            <ellipse cx="80" cy="30" rx="50" ry="14" fill="#c4a882" opacity="0.6"/>
+            <rect x="30" y="30" width="100" height="60" fill="#c4a882" opacity="0.5"/>
+            <ellipse cx="80" cy="90" rx="50" ry="14" fill="#b09070" opacity="0.6"/>
+            <!-- Split lines -->
+            <line x1="80" y1="16" x2="80" y2="104" stroke="#8a7060" stroke-width="1.2"/>
+            <line x1="55" y1="17" x2="55" y2="103" stroke="#8a7060" stroke-width="0.8" opacity="0.6"/>
+            <line x1="105" y1="17" x2="105" y2="103" stroke="#8a7060" stroke-width="0.8" opacity="0.6"/>
+            <line x1="42" y1="20" x2="42" y2="100" stroke="#8a7060" stroke-width="0.6" opacity="0.4"/>
+            <line x1="118" y1="20" x2="118" y2="100" stroke="#8a7060" stroke-width="0.6" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="grid md:grid-cols-2 border-t border-cream-300 fade-up">
+        <div class="bg-cream-200 min-h-52 md:min-h-0 flex items-center justify-center order-last md:order-first">
+          <svg width="160" height="140" viewBox="0 0 160 140" fill="none" aria-label="Weaving illustration" role="img">
+            <!-- Weave frame -->
+            <rect x="30" y="10" width="100" height="120" rx="2" fill="#c4a882" opacity="0.18"/>
+            <!-- Vertical strands -->
+            <line x1="45" y1="10" x2="45" y2="130" stroke="#b09070" stroke-width="1.5" opacity="0.8"/>
+            <line x1="65" y1="10" x2="65" y2="130" stroke="#b09070" stroke-width="1.5" opacity="0.8"/>
+            <line x1="85" y1="10" x2="85" y2="130" stroke="#b09070" stroke-width="1.5" opacity="0.8"/>
+            <line x1="105" y1="10" x2="105" y2="130" stroke="#b09070" stroke-width="1.5" opacity="0.8"/>
+            <line x1="125" y1="10" x2="125" y2="130" stroke="#b09070" stroke-width="1.5" opacity="0.8"/>
+            <!-- Horizontal weft strands (alternating weave) -->
+            <path d="M30 28 L45 28 L45 24 L65 24 L65 28 L85 28 L85 24 L105 24 L105 28 L125 28 L125 24 L130 24" stroke="#8a7060" stroke-width="2" fill="none"/>
+            <path d="M30 44 L45 44 L45 48 L65 48 L65 44 L85 44 L85 48 L105 48 L105 44 L125 44 L125 48 L130 48" stroke="#8a7060" stroke-width="2" fill="none"/>
+            <path d="M30 60 L45 60 L45 56 L65 56 L65 60 L85 60 L85 56 L105 56 L105 60 L125 60 L125 56 L130 56" stroke="#8a7060" stroke-width="2" fill="none"/>
+            <path d="M30 76 L45 76 L45 80 L65 80 L65 76 L85 76 L85 80 L105 80 L105 76 L125 76 L125 80 L130 80" stroke="#8a7060" stroke-width="2" fill="none"/>
+            <path d="M30 92 L45 92 L45 88 L65 88 L65 92 L85 92 L85 88 L105 88 L105 92 L125 92 L125 88 L130 88" stroke="#8a7060" stroke-width="2" fill="none"/>
+            <path d="M30 108 L45 108 L45 112 L65 112 L65 108 L85 108 L85 112 L105 112 L105 108 L125 108 L125 112 L130 112" stroke="#8a7060" stroke-width="2" fill="none" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="py-12 md:py-16 pl-0 md:pl-16 flex flex-col justify-center">
+          <div class="flex items-start gap-5 mb-5">
+            <span class="font-serif text-4xl text-cream-300 leading-none select-none">04</span>
+            <div>
+              <h3 class="font-serif text-2xl text-earth-800 mb-3">Weave</h3>
+              <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">
+                The weaving itself takes one to three days per lamp, depending on the pattern complexity. Our weavers work without templates — the form emerges from their hands and memory. No two lamps are exactly the same.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="grid md:grid-cols-2 border-t border-b border-cream-300 fade-up">
+        <div class="py-12 md:py-16 pr-0 md:pr-16 flex flex-col justify-center">
+          <div class="flex items-start gap-5 mb-5">
+            <span class="font-serif text-4xl text-cream-300 leading-none select-none">05</span>
+            <div>
+              <h3 class="font-serif text-2xl text-earth-800 mb-3">Finish & wire</h3>
+              <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">
+                Completed shades are trimmed, sanded smooth at the edges, and fitted with certified electrical components. We use E27 pendant sockets rated for LED bulbs up to 15W. Each lamp is lit and checked before packing.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-cream-300 min-h-52 md:min-h-0 flex items-center justify-center">
+          <svg class="lamp-sway w-28" viewBox="0 0 120 200" fill="none" aria-label="Finished lamp" role="img">
+            <line x1="60" y1="0" x2="60" y2="30" stroke="#8a7060" stroke-width="1.5"/>
+            <ellipse cx="60" cy="34" rx="12" ry="5" fill="#7a6050" opacity="0.7"/>
+            <path d="M42 38 Q30 95 22 158 Q38 164 60 166 Q82 164 98 158 Q90 95 78 38 Z" fill="#c4a882" opacity="0.88"/>
+            <path d="M41 65 Q60 70 79 65" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+            <path d="M37 92 Q60 97 83 92" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+            <path d="M30 120 Q60 126 90 120" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+            <path d="M24 146 Q60 152 96 146" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.6"/>
+            <line x1="22" y1="158" x2="98" y2="158" stroke="#9c7e60" stroke-width="0.9"/>
+            <ellipse cx="60" cy="105" rx="24" ry="28" fill="#f5e0a0" opacity="0.28"/>
+            <path d="M30 165 Q60 175 90 165 L108 200 Q60 212 12 200 Z" fill="#f5e0a0" opacity="0.10"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARTISAN PROFILES ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-100" aria-labelledby="artisans-heading">
+  <div class="max-w-7xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">The people</p>
+    <h2 id="artisans-heading" class="font-serif text-4xl text-earth-800 mb-14 fade-up">The hands behind <em class="italic text-earth-500">each lamp</em></h2>
+
+    <div class="grid md:grid-cols-3 gap-px bg-cream-300">
+      <div class="bg-cream-100 p-8 fade-up">
+        <div class="w-16 h-16 bg-cream-300 rounded-full mb-5 flex items-center justify-center">
+          <svg width="32" height="32" fill="none" stroke="#8a7060" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-serif text-xl text-earth-800 mb-1">Khun Malee</h3>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">Head Weaver · 28 years</p>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Malee learned rattan weaving from her mother at age twelve in San Kamphaeng. She leads our core team of seven weavers and is responsible for quality on every piece.</p>
+      </div>
+      <div class="bg-cream-50 p-8 fade-up">
+        <div class="w-16 h-16 bg-cream-300 rounded-full mb-5 flex items-center justify-center">
+          <svg width="32" height="32" fill="none" stroke="#8a7060" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-serif text-xl text-earth-800 mb-1">Khun Somchai</h3>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">Bamboo Specialist · 19 years</p>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Somchai comes from a family that has worked bamboo in Ban Tawai for three generations. He handles all splitting, curing, and preparation before the cane reaches the weavers.</p>
+      </div>
+      <div class="bg-cream-100 p-8 fade-up">
+        <div class="w-16 h-16 bg-cream-300 rounded-full mb-5 flex items-center justify-center">
+          <svg width="32" height="32" fill="none" stroke="#8a7060" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-serif text-xl text-earth-800 mb-1">Khun Nong</h3>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">Finishing & Wiring · 25 years</p>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Nong oversees the finishing process and electrical assembly. She is certified in low-voltage wiring and checks every lamp individually before it leaves the workshop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MATERIALS ═══ -->
+<section class="py-20 px-6 md:px-12 bg-earth-800" aria-labelledby="materials-heading">
+  <div class="max-w-7xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4 fade-up">Materials</p>
+    <h2 id="materials-heading" class="font-serif text-4xl text-cream-100 mb-14 fade-up">What we work <em class="italic text-earth-200">with</em></h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="fade-up">
+        <div class="w-8 h-px bg-earth-400 mb-6"></div>
+        <h3 class="font-serif text-xl text-cream-200 mb-4">Mountain rattan</h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-300 font-light mb-4">Harvested from forests above 800m in Chiang Mai and Nan provinces. Slower growing than lowland rattan, the cane is denser and more flexible. The natural colour ranges from pale straw to deep honey — variation we consider a feature, not a defect.</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500">Sustainably harvested · No chemical treatment</p>
+      </div>
+      <div class="fade-up">
+        <div class="w-8 h-px bg-earth-400 mb-6"></div>
+        <h3 class="font-serif text-xl text-cream-200 mb-4">Highland bamboo</h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-300 font-light mb-4">Split from Phyllostachys species grown in Chiang Mai's highlands. Bamboo at altitude grows more slowly, producing culms with thicker walls and tighter grain — which holds its shape better and resists splitting over time.</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500">Cured naturally · No lacquer or varnish</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="py-20 px-6 md:px-12 bg-cream-200 text-center" aria-label="Call to action">
+  <div class="max-w-xl mx-auto fade-up">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">See the result</p>
+    <h2 class="font-serif text-4xl text-earth-800 mb-5">Browse the <em class="italic text-earth-500">collection</em></h2>
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-8">Each lamp in our collection is the result of this process — from mountain forest to your room.</p>
+    <a href="collection.html" class="btn-outline">Explore all lamps →</a>
+  </div>
+</section>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div id="cart-overlay" role="dialog" aria-modal="true" aria-label="Shopping cart"></div>
+<aside id="cart-sidebar" aria-label="Cart">
+  <div class="cart-header">
+    <h2 class="font-serif text-lg text-earth-800">Your cart</h2>
+    <button onclick="closeCart()" class="cursor-pointer text-earth-400 hover:text-earth-700 transition-colors" aria-label="Close cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="cart-items-list" class="cart-items"></div>
+  <div id="cart-footer" class="cart-footer" style="display:none">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Total</span>
+      <span id="cart-total" class="font-serif text-xl text-earth-800"></span>
+    </div>
+    <p class="font-sans text-[10px] text-earth-400 font-light mb-4">Shipping calculated at checkout. Free within Thailand.</p>
+    <button class="btn-outline w-full text-center cursor-pointer">Checkout →</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
+</body>
+</html>

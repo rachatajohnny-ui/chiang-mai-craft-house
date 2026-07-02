@@ -1,0 +1,31 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Products"
+    files:
+      - name: "products"
+        label: "Product Catalog"
+        file: "products.json"
+        extension: "json"
+        format: "json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — ฿{{fields.price}}"
+            fields:
+              - { label: "ID (no spaces, lowercase)", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Material", name: "material", widget: "select", options: ["Rattan", "Bamboo"] }
+              - { label: "Type", name: "type", widget: "select", options: ["pendant", "floor", "table", "wall", "cluster"] }
+              - { label: "Type label (shown on site)", name: "typeLabel", widget: "string" }
+              - { label: "Price (THB)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Dimensions", name: "dimensions", widget: "string" }
+              - { label: "Card background color", name: "bg", widget: "color", default: "#d9cfc2" }
+              - { label: "Product photo", name: "image", widget: "image", required: false }

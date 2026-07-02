@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chiang Mai Craft House — Handwoven Rattan & Bamboo Lamps</title>
+  <meta name="description" content="โคมไฟหวายและไม้ไผ่ทอมือจากเชียงใหม่ — แสงสว่างที่มีชีวิต สำหรับพื้นที่ที่คุณรัก" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="shared.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Lora', 'Georgia', 'serif'],
+            sans: ['Raleway', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            cream: {
+              50:  '#faf8f4',
+              100: '#f2ede5',
+              200: '#e8e0d4',
+              300: '#d9cfc2',
+              400: '#c9bba8',
+            },
+            earth: {
+              100: '#c4a882',
+              200: '#b09070',
+              300: '#9c8070',
+              400: '#8a7060',
+              500: '#6b5c4e',
+              600: '#4a3c30',
+              700: '#2c2420',
+              800: '#1e1612',
+            },
+            warm: '#c9bba8',
+          },
+          letterSpacing: {
+            widest: '0.25em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background-color: #faf8f4; color: #2c2420; }
+
+    /* Lamp SVG animations */
+    .lamp-sway { transform-origin: top center; animation: sway 6s ease-in-out infinite; }
+    @keyframes sway { 0%,100%{transform:rotate(-1deg)} 50%{transform:rotate(1deg)} }
+    @media (prefers-reduced-motion: reduce) { .lamp-sway { animation: none; } }
+
+    /* Fade in on scroll */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #f2ede5; }
+    ::-webkit-scrollbar-thumb { background: #c9bba8; border-radius: 2px; }
+
+    /* Nav underline */
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:#2c2420; transition:width 0.3s ease; }
+    .nav-link:hover::after { width:100%; }
+
+    /* Product card hover */
+    .product-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-card:hover .product-img { filter: brightness(1.03); }
+    .product-img { transition: filter 0.4s ease; }
+
+    /* Button styles */
+    .btn-outline { display:inline-block; padding:12px 32px; border:1px solid #2c2420; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; font-family:'Raleway',sans-serif; font-weight:500; color:#2c2420; text-decoration:none; cursor:pointer; background:transparent; transition:background 0.3s ease, color 0.3s ease; }
+    .btn-outline:hover { background:#2c2420; color:#faf8f4; }
+    .btn-outline:focus-visible { outline:2px solid #8a7060; outline-offset:3px; }
+    .btn-dark { background:#2c2420; color:#e8e0d4; }
+    .btn-dark:hover { background:#1e1612; color:#faf8f4; }
+
+    /* Mobile menu */
+    #mobile-menu { transition: max-height 0.4s ease, opacity 0.4s ease; max-height:0; opacity:0; overflow:hidden; }
+    #mobile-menu.open { max-height:300px; opacity:1; }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-sm border-b border-cream-200" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#" class="font-serif text-base text-earth-700 tracking-wide whitespace-nowrap" aria-label="Chiang Mai Craft House home">
+        Chiang Mai <em class="italic text-earth-500">Craft House</em>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-10">
+        <a href="collection.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Collection</a>
+        <a href="craft.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Our Craft</a>
+        <a href="about.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">About</a>
+        <a href="contact.html" class="nav-link font-sans text-[11px] tracking-widest uppercase text-earth-500 hover:text-earth-700">Contact</a>
+      </div>
+
+      <!-- Icons -->
+      <div class="hidden md:flex items-center gap-5">
+        <button class="cursor-pointer text-earth-500 hover:text-earth-700 transition-colors focus-visible:outline-2 focus-visible:outline-earth-400" aria-label="Search">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button onclick="openCart()" class="cursor-pointer text-earth-500 hover:text-earth-700 transition-colors relative" aria-label="Shopping bag">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count absolute -top-2 -right-2 w-4 h-4 bg-earth-700 text-cream-50 text-[9px] rounded-full hidden items-center justify-center font-sans">0</span>
+        </button>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="menu-btn" class="md:hidden cursor-pointer text-earth-500 hover:text-earth-700 transition-colors" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden bg-cream-50 border-t border-cream-200">
+    <div class="px-6 py-5 flex flex-col gap-5">
+      <a href="collection.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Collection</a>
+      <a href="craft.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Our Craft</a>
+      <a href="about.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">About</a>
+      <a href="contact.html" class="font-sans text-[11px] tracking-widest uppercase text-earth-500">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="pt-16 min-h-screen grid md:grid-cols-2" aria-label="Hero section">
+
+  <!-- Left: Text -->
+  <div class="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 bg-cream-200">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-6">Handwoven · Chiang Mai, Thailand</p>
+    <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight text-earth-800 mb-6">
+      Light that<br>lives <em class="italic text-earth-500">slowly</em>
+    </h1>
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light max-w-xs mb-10">
+      Each lamp is woven by hand in the hills of Chiang Mai — rattan and bamboo shaped into warm, living light for considered spaces.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a href="collection.html" class="btn-outline">Explore Collection</a>
+      <a href="craft.html" class="btn-outline" style="border-color:#8a7060;color:#8a7060;">Our Story →</a>
+    </div>
+
+    <!-- Trust bar -->
+    <div class="mt-16 pt-8 border-t border-cream-300 flex flex-wrap gap-6">
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#9c8070" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Handmade to order</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#9c8070" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Free shipping Thailand</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" fill="none" stroke="#9c8070" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Natural materials only</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Lamp illustration -->
+  <div class="relative flex items-center justify-center bg-cream-400 min-h-80 md:min-h-0 overflow-hidden">
+    <!-- Ambient glow -->
+    <div class="absolute w-64 h-64 rounded-full bg-amber-100/40 blur-3xl"></div>
+    <svg class="lamp-sway relative z-10 w-48 md:w-60 lg:w-72" viewBox="0 0 240 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rattan pendant lamp illustration" role="img">
+      <!-- Cord -->
+      <line x1="120" y1="0" x2="120" y2="52" stroke="#8a7060" stroke-width="2"/>
+      <!-- Cap -->
+      <ellipse cx="120" cy="57" rx="18" ry="7" fill="#7a6050" opacity="0.8"/>
+      <rect x="108" y="52" width="24" height="10" rx="3" fill="#8a7060" opacity="0.7"/>
+      <!-- Shade body -->
+      <path d="M88 65 Q70 155 45 235 Q72 242 120 245 Q168 242 195 235 Q170 155 152 65 Z" fill="#c4a882" opacity="0.88"/>
+      <!-- Weave horizontal lines -->
+      <path d="M86 90 Q120 95 154 90" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M82 115 Q120 121 158 115" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M77 140 Q120 147 163 140" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M73 165 Q120 172 167 165" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M68 190 Q120 197 172 190" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M60 212 Q120 219 180 212" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <path d="M50 230 Q120 237 190 230" stroke="#9c7e60" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <!-- Weave vertical lines -->
+      <line x1="88" y1="65" x2="45" y2="235" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <line x1="99" y1="65" x2="65" y2="235" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <line x1="110" y1="65" x2="85" y2="240" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <line x1="120" y1="65" x2="120" y2="245" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <line x1="130" y1="65" x2="155" y2="240" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <line x1="141" y1="65" x2="175" y2="235" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <line x1="152" y1="65" x2="195" y2="235" stroke="#9c7e60" stroke-width="0.6" opacity="0.45"/>
+      <!-- Bottom ring -->
+      <ellipse cx="120" cy="240" rx="75" ry="8" fill="#b09070" opacity="0.6"/>
+      <!-- Warm glow from inside -->
+      <ellipse cx="120" cy="160" rx="42" ry="50" fill="#f5e0a0" opacity="0.22"/>
+      <!-- Light cone below -->
+      <path d="M60 245 Q120 255 180 245 L210 340 Q120 360 30 340 Z" fill="#f5e0a0" opacity="0.10"/>
+    </svg>
+
+    <!-- Decorative text -->
+    <div class="absolute bottom-8 right-8 text-right">
+      <p class="font-serif italic text-xs text-earth-600 opacity-70">woven by hand</p>
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-500 opacity-50 mt-1">since 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ANNOUNCEMENT BAND ═══════════════════════════ -->
+<div class="bg-earth-700 text-cream-200 py-3 overflow-hidden" aria-label="Announcements">
+  <div class="flex items-center justify-center gap-10 text-[10px] tracking-widest uppercase font-sans flex-wrap px-4 gap-y-1">
+    <span>Ships worldwide</span>
+    <span class="text-earth-400 hidden sm:inline">·</span>
+    <span>Crafted in Northern Thailand</span>
+    <span class="text-earth-400 hidden sm:inline">·</span>
+    <span>Natural rattan & bamboo</span>
+    <span class="text-earth-400 hidden sm:inline">·</span>
+    <span>Custom orders welcome</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ COLLECTION ═══════════════════════════ -->
+<section id="collection" class="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto" aria-labelledby="collection-heading">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 fade-up">
+    <div>
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3">Our collection</p>
+      <h2 id="collection-heading" class="font-serif text-4xl md:text-5xl text-earth-800">Lamps for <em class="italic text-earth-500">slow living</em></h2>
+    </div>
+    <a href="#" class="mt-4 sm:mt-0 font-sans text-[11px] tracking-widest uppercase text-earth-400 hover:text-earth-700 transition-colors cursor-pointer">View all →</a>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream-300">
+
+    <!-- Product 1 -->
+    <article class="product-card bg-cream-50 cursor-pointer" aria-label="Doi Suthep rattan pendant lamp">
+      <div class="product-img h-72 bg-cream-300 flex items-center justify-center overflow-hidden">
+        <svg width="110" height="170" viewBox="0 0 110 170" fill="none" aria-hidden="true">
+          <line x1="55" y1="0" x2="55" y2="22" stroke="#8a7060" stroke-width="1.5"/>
+          <path d="M38 24 Q24 80 16 145 Q32 150 55 152 Q78 150 94 145 Q86 80 72 24 Z" fill="#c4a882" opacity="0.88"/>
+          <path d="M37 50 Q55 54 73 50" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M33 75 Q55 79 77 75" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M28 100 Q55 105 82 100" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M22 125 Q55 130 88 125" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <line x1="16" y1="145" x2="94" y2="145" stroke="#9c7e60" stroke-width="0.9"/>
+          <ellipse cx="55" cy="90" rx="22" ry="26" fill="#f5e0a0" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="p-6">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Rattan · Pendant</p>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Doi Suthep</h3>
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-600">฿2,800</span>
+          <button class="btn-outline text-[10px] px-4 py-2 cursor-pointer" data-product="doi-suthep" onclick="addToCart('doi-suthep')">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 2 -->
+    <article class="product-card bg-cream-100 cursor-pointer" aria-label="Nimman bamboo pendant lamp">
+      <div class="product-img h-72 bg-cream-400 flex items-center justify-center overflow-hidden">
+        <svg width="130" height="170" viewBox="0 0 130 170" fill="none" aria-hidden="true">
+          <line x1="65" y1="0" x2="65" y2="20" stroke="#8a7060" stroke-width="1.5"/>
+          <ellipse cx="65" cy="24" rx="22" ry="8" fill="#8a7060" opacity="0.6"/>
+          <path d="M22 32 Q10 95 8 148 Q32 154 65 156 Q98 154 122 148 Q120 95 108 32 Z" fill="#b89e7c" opacity="0.85"/>
+          <path d="M21 60 Q65 65 109 60" stroke="#967d5e" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M15 90 Q65 96 115 90" stroke="#967d5e" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M10 118 Q65 124 120 118" stroke="#967d5e" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M8 140 Q65 146 122 140" stroke="#967d5e" stroke-width="0.7" fill="none" opacity="0.6"/>
+          <line x1="8" y1="148" x2="122" y2="148" stroke="#9c7e60" stroke-width="0.9"/>
+          <ellipse cx="65" cy="95" rx="32" ry="36" fill="#f5e0a0" opacity="0.22"/>
+        </svg>
+      </div>
+      <div class="p-6">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Bamboo · Pendant</p>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Nimman</h3>
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-600">฿3,400</span>
+          <button class="btn-outline text-[10px] px-4 py-2 cursor-pointer" data-product="nimman" onclick="addToCart('nimman')">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 3 -->
+    <article class="product-card bg-cream-50 cursor-pointer" aria-label="Ping River rattan floor lamp">
+      <div class="product-img h-72 bg-cream-200 flex items-center justify-center overflow-hidden">
+        <svg width="100" height="170" viewBox="0 0 100 170" fill="none" aria-hidden="true">
+          <line x1="50" y1="0" x2="50" y2="24" stroke="#8a7060" stroke-width="1.5"/>
+          <path d="M50 24 Q42 27 38 34" stroke="#8a7060" stroke-width="1.5" fill="none"/>
+          <path d="M38 34 Q18 58 12 128 Q28 134 50 136 Q72 134 88 128 Q82 58 62 34 Q58 27 50 24" fill="#cdb08a" opacity="0.85"/>
+          <path d="M14 72 Q50 77 86 72" stroke="#a08060" stroke-width="0.7" fill="none" opacity="0.6"/>
+          <path d="M13 96 Q50 102 87 96" stroke="#a08060" stroke-width="0.7" fill="none" opacity="0.6"/>
+          <path d="M12 118 Q50 124 88 118" stroke="#a08060" stroke-width="0.7" fill="none" opacity="0.6"/>
+          <line x1="12" y1="128" x2="88" y2="128" stroke="#a08060" stroke-width="0.9"/>
+          <line x1="50" y1="136" x2="50" y2="170" stroke="#8a7060" stroke-width="2"/>
+          <ellipse cx="50" cy="170" rx="20" ry="4" fill="#8a7060" opacity="0.4"/>
+          <ellipse cx="50" cy="88" rx="26" ry="30" fill="#f5e0a0" opacity="0.22"/>
+        </svg>
+      </div>
+      <div class="p-6">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Rattan · Floor Lamp</p>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Ping River</h3>
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-600">฿5,200</span>
+          <button class="btn-outline text-[10px] px-4 py-2 cursor-pointer" data-product="ping-river" onclick="addToCart('ping-river')">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 4 -->
+    <article class="product-card bg-cream-100 cursor-pointer" aria-label="Wualai table rattan lamp">
+      <div class="product-img h-72 bg-cream-300 flex items-center justify-center overflow-hidden">
+        <svg width="140" height="140" viewBox="0 0 140 140" fill="none" aria-hidden="true">
+          <ellipse cx="70" cy="14" rx="30" ry="10" fill="#8a7060" opacity="0.5"/>
+          <path d="M40 18 Q30 60 26 118 Q46 124 70 126 Q94 124 114 118 Q110 60 100 18 Z" fill="#c4a882" opacity="0.85"/>
+          <path d="M39 42 Q70 46 101 42" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M34 68 Q70 73 106 68" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M28 94 Q70 99 112 94" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.7"/>
+          <path d="M26 114 Q70 119 114 114" stroke="#9c7e60" stroke-width="0.7" fill="none" opacity="0.6"/>
+          <line x1="26" y1="118" x2="114" y2="118" stroke="#9c7e60" stroke-width="0.9"/>
+          <line x1="70" y1="126" x2="70" y2="140" stroke="#8a7060" stroke-width="2"/>
+          <ellipse cx="70" cy="75" rx="28" ry="32" fill="#f5e0a0" opacity="0.22"/>
+        </svg>
+      </div>
+      <div class="p-6">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Rattan · Table Lamp</p>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Wualai</h3>
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-600">฿3,200</span>
+          <button class="btn-outline text-[10px] px-4 py-2 cursor-pointer" data-product="wualai" onclick="addToCart('wualai')">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 5 -->
+    <article class="product-card bg-cream-50 cursor-pointer" aria-label="Mae Rim bamboo cluster pendant">
+      <div class="product-img h-72 bg-cream-200 flex items-center justify-center overflow-hidden">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <!-- Three small lamps clustered -->
+          <line x1="55" y1="0" x2="55" y2="20" stroke="#8a7060" stroke-width="1.2"/>
+          <path d="M42 22 Q34 62 28 108 Q42 112 55 113 Q68 112 82 108 Q76 62 68 22 Z" fill="#c4a882" opacity="0.8"/>
+          <path d="M28 88 Q55 92 82 88" stroke="#9c7e60" stroke-width="0.6" fill="none" opacity="0.7"/>
+          <line x1="100" y1="0" x2="100" y2="30" stroke="#8a7060" stroke-width="1.2"/>
+          <path d="M88 32 Q80 72 74 118 Q88 122 100 123 Q112 122 126 118 Q120 72 112 32 Z" fill="#b89e7c" opacity="0.82"/>
+          <path d="M74 98 Q100 102 126 98" stroke="#967d5e" stroke-width="0.6" fill="none" opacity="0.7"/>
+          <line x1="130" y1="0" x2="130" y2="15" stroke="#8a7060" stroke-width="1.2"/>
+          <path d="M120 17 Q113 48 108 88 Q120 92 130 93 Q140 92 152 88 Q147 48 140 17 Z" fill="#cdb08a" opacity="0.78"/>
+          <ellipse cx="55" cy="68" rx="15" ry="18" fill="#f5e0a0" opacity="0.2"/>
+          <ellipse cx="100" cy="80" rx="16" ry="19" fill="#f5e0a0" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="p-6">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Bamboo · Cluster Pendant</p>
+        <h3 class="font-serif text-xl text-earth-800 mb-3">Mae Rim</h3>
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-600">฿7,800</span>
+          <button class="btn-outline text-[10px] px-4 py-2 cursor-pointer" data-product="mae-rim" onclick="addToCart('mae-rim')">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 6 — Custom -->
+    <article class="product-card bg-earth-700 cursor-pointer" aria-label="Custom order">
+      <div class="h-72 flex items-center justify-center">
+        <div class="text-center px-8">
+          <svg class="mx-auto mb-4" width="40" height="40" fill="none" stroke="#c4a882" stroke-width="1.2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <p class="font-sans text-[10px] tracking-widest uppercase text-earth-200 mb-2">Bespoke</p>
+          <p class="font-serif italic text-lg text-cream-200 leading-snug">Design your own lamp</p>
+        </div>
+      </div>
+      <div class="p-6 border-t border-earth-600">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-300 mb-1">Custom Order</p>
+        <h3 class="font-serif text-xl text-cream-200 mb-3">Made for you</h3>
+        <div class="flex items-center justify-between">
+          <span class="font-sans text-sm text-earth-300">from ฿4,500</span>
+          <a href="contact.html" class="btn-outline border-cream-300 text-cream-200 hover:bg-cream-200 hover:text-earth-800 text-[10px] px-4 py-2">Enquire →</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ EDITORIAL STRIP ═══════════════════════════ -->
+<section class="bg-cream-200 py-16 px-6 md:px-12" aria-label="Materials">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 md:gap-16 fade-up">
+    <div>
+      <div class="w-8 h-px bg-earth-400 mb-5"></div>
+      <h3 class="font-serif text-lg text-earth-700 mb-3">Mountain Rattan</h3>
+      <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Harvested sustainably from forests above 800m. Dried slowly in the mountain air before weaving — giving each strand its characteristic golden tone.</p>
+    </div>
+    <div>
+      <div class="w-8 h-px bg-earth-400 mb-5"></div>
+      <h3 class="font-serif text-lg text-earth-700 mb-3">Highland Bamboo</h3>
+      <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Split and cured by hand. Bamboo from Chiang Mai's highlands is denser and more flexible than lowland varieties — it holds its shape for decades.</p>
+    </div>
+    <div>
+      <div class="w-8 h-px bg-earth-400 mb-5"></div>
+      <h3 class="font-serif text-lg text-earth-700 mb-3">Living Light</h3>
+      <p class="font-sans text-sm leading-relaxed text-earth-500 font-light">Woven rattan and bamboo create a texture of light and shadow that changes through the day. No two lamps are identical — each carries the hand of its maker.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CRAFT STORY ═══════════════════════════ -->
+<section id="craft" class="grid md:grid-cols-2 min-h-screen" aria-labelledby="craft-heading">
+
+  <!-- Image side -->
+  <div class="bg-cream-400 min-h-80 md:min-h-0 flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, #8a7060 0, #8a7060 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
+    <svg class="relative z-10 w-44 md:w-56 opacity-90" viewBox="0 0 200 280" fill="none" aria-label="Artisan weaving bamboo" role="img">
+      <rect x="70" y="10" width="60" height="260" rx="3" fill="#b89e7c" opacity="0.25"/>
+      <line x1="70" y1="10" x2="130" y2="10" stroke="#9c7e60" stroke-width="1.2"/>
+      <line x1="70" y1="270" x2="130" y2="270" stroke="#9c7e60" stroke-width="1.2"/>
+      <line x1="70" y1="10" x2="70" y2="270" stroke="#9c7e60" stroke-width="1"/>
+      <line x1="130" y1="10" x2="130" y2="270" stroke="#9c7e60" stroke-width="1"/>
+      <line x1="70" y1="35" x2="130" y2="35" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="60" x2="130" y2="60" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="85" x2="130" y2="85" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="110" x2="130" y2="110" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="135" x2="130" y2="135" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="160" x2="130" y2="160" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="185" x2="130" y2="185" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="210" x2="130" y2="210" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="70" y1="235" x2="130" y2="235" stroke="#9c7e60" stroke-width="0.6" opacity="0.7"/>
+      <line x1="85" y1="10" x2="85" y2="270" stroke="#9c7e60" stroke-width="0.6" opacity="0.5"/>
+      <line x1="100" y1="10" x2="100" y2="270" stroke="#9c7e60" stroke-width="0.6" opacity="0.5"/>
+      <line x1="115" y1="10" x2="115" y2="270" stroke="#9c7e60" stroke-width="0.6" opacity="0.5"/>
+      <text x="100" y="148" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#8a7060" opacity="0.8">woven by hand</text>
+    </svg>
+    <!-- Corner labels -->
+    <div class="absolute bottom-6 left-6">
+      <p class="font-sans text-[9px] tracking-widest uppercase text-earth-600 opacity-60">Chiang Mai, Thailand</p>
+    </div>
+  </div>
+
+  <!-- Text side -->
+  <div class="flex flex-col justify-center px-8 md:px-16 lg:px-20 py-20 bg-cream-100">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-5 fade-up">The craft</p>
+    <h2 id="craft-heading" class="font-serif text-4xl md:text-5xl text-earth-800 mb-8 fade-up">Made in the<br><em class="italic text-earth-500">old way</em></h2>
+
+    <blockquote class="border-l-2 border-earth-300 pl-6 mb-8 fade-up" cite="Craft House artisan">
+      <p class="font-serif italic text-lg md:text-xl leading-relaxed text-earth-600">"We let the rattan dry slowly in mountain air before weaving — the light it makes is warmer for it."</p>
+      <footer class="mt-3 font-sans text-[10px] tracking-widest uppercase text-earth-400">— Khun Malee, Head Weaver</footer>
+    </blockquote>
+
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-5 fade-up">
+      Our weavers are families in the villages outside Chiang Mai who have worked rattan and bamboo for generations. Most learned the craft from their parents — and their parents' parents.
+    </p>
+    <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-10 fade-up">
+      Each lamp takes two to four days to complete. We never rush the process. When you light one of our lamps for the first time, you are connecting with that tradition.
+    </p>
+
+    <div class="grid grid-cols-3 gap-6 mb-10 fade-up">
+      <div>
+        <p class="font-serif text-3xl text-earth-700">8+</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mt-1">Artisan families</p>
+      </div>
+      <div>
+        <p class="font-serif text-3xl text-earth-700">2–4</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mt-1">Days per lamp</p>
+      </div>
+      <div>
+        <p class="font-serif text-3xl text-earth-700">100%</p>
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mt-1">Natural materials</p>
+      </div>
+    </div>
+
+    <a href="#visit" class="btn-outline self-start fade-up">Visit our workshop →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+<section class="bg-cream-50 py-20 px-6 md:px-12" aria-labelledby="testimonials-heading">
+  <div class="max-w-5xl mx-auto">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-3 text-center fade-up">What people say</p>
+    <h2 id="testimonials-heading" class="font-serif text-3xl md:text-4xl text-earth-800 text-center mb-14 fade-up">Homes lit with <em class="italic">intention</em></h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <figure class="fade-up">
+        <blockquote class="font-serif italic text-base leading-relaxed text-earth-600 mb-4">"The Doi Suthep lamp transformed our living room. The light through the weave is unlike anything we'd seen before."</blockquote>
+        <figcaption class="font-sans text-[10px] tracking-widest uppercase text-earth-400">— Arisara T., Bangkok</figcaption>
+      </figure>
+      <figure class="fade-up">
+        <blockquote class="font-serif italic text-base leading-relaxed text-earth-600 mb-4">"We ordered two Nimman pendants for our café — our guests always ask where they're from. Worth every baht."</blockquote>
+        <figcaption class="font-sans text-[10px] tracking-widest uppercase text-earth-400">— James K., Singapore</figcaption>
+      </figure>
+      <figure class="fade-up">
+        <blockquote class="font-serif italic text-base leading-relaxed text-earth-600 mb-4">"Custom order arrived perfectly. The team communicated throughout. A beautiful object made with real care."</blockquote>
+        <figcaption class="font-sans text-[10px] tracking-widest uppercase text-earth-400">— Nattida P., Chiang Mai</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+<section id="about" class="bg-earth-800 py-24 px-6 md:px-12" aria-labelledby="about-heading">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="font-sans text-[10px] tracking-widest uppercase text-earth-300 mb-5 fade-up">About us</p>
+    <h2 id="about-heading" class="font-serif text-4xl md:text-5xl text-cream-100 mb-8 fade-up">A house built on<br><em class="italic text-earth-200">craft and light</em></h2>
+    <p class="font-sans text-sm leading-relaxed text-earth-300 font-light max-w-xl mx-auto mb-6 fade-up">
+      Chiang Mai Craft House was founded in 2026 by Khun John and Khun Alice — a founder and designer who shared a belief that the best objects are made slowly, with full attention.
+    </p>
+    <p class="font-sans text-sm leading-relaxed text-earth-300 font-light max-w-xl mx-auto mb-12 fade-up">
+      We work directly with artisan families in the villages of San Kamphaeng and Ban Tawai — paying above-market rates, visiting regularly, and refusing to rush production to meet demand.
+    </p>
+    <a href="contact.html" class="btn-outline border-cream-300 text-cream-200 hover:bg-cream-200 hover:text-earth-800 fade-up">Visit us in Chiang Mai →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ VISIT ═══════════════════════════ -->
+<section id="visit" class="py-20 px-6 md:px-12 bg-cream-100" aria-labelledby="visit-heading">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+    <div class="fade-up">
+      <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">Find us</p>
+      <h2 id="visit-heading" class="font-serif text-4xl text-earth-800 mb-6">Visit us in<br><em class="italic text-earth-500">Hang Dong</em></h2>
+      <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-8">Our showroom and workshop are open to visitors. Come see the lamps in person, meet the team, and watch the weaving process.</p>
+
+      <div class="space-y-5 mb-10">
+        <div class="flex gap-4">
+          <svg class="flex-shrink-0 mt-0.5" width="16" height="16" fill="none" stroke="#9c8070" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Address</p>
+            <p class="font-sans text-sm text-earth-600">Hang Dong<br>Chiang Mai 50230, Thailand</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <svg class="flex-shrink-0 mt-0.5" width="16" height="16" fill="none" stroke="#9c8070" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Hours</p>
+            <p class="font-sans text-sm text-earth-600">Monday – Saturday<br>10:00 – 19:00</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <svg class="flex-shrink-0 mt-0.5" width="16" height="16" fill="none" stroke="#9c8070" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <div>
+            <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">Contact</p>
+            <p class="font-sans text-sm text-earth-600">(+66) 902353692<br>Chiangmaicrafthouse@gmail.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <a href="#" class="btn-outline cursor-pointer">Get directions</a>
+        <a href="mailto:Chiangmaicrafthouse@gmail.com" class="btn-outline cursor-pointer" style="border-color:#8a7060;color:#6b5c4e;">Email us</a>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="fade-up">
+      <div class="bg-cream-200 p-8 md:p-10">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-4">Stay in touch</p>
+        <h3 class="font-serif text-2xl text-earth-800 mb-3">Letters from the <em class="italic">workshop</em></h3>
+        <p class="font-sans text-sm leading-relaxed text-earth-500 font-light mb-6">A slow newsletter — occasional updates on new collections, behind-the-scenes stories, and care guides for your lamps.</p>
+        <form class="flex flex-col gap-3" onsubmit="handleSubscribe(event)" novalidate>
+          <label for="email-input" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="email-input"
+            placeholder="your@email.com"
+            required
+            aria-required="true"
+            class="w-full px-4 py-3 bg-cream-50 border border-cream-300 font-sans text-sm text-earth-700 placeholder-earth-300 focus:outline-none focus:border-earth-400 transition-colors"
+          />
+          <button type="submit" class="btn-outline w-full text-center cursor-pointer">Subscribe →</button>
+          <p id="subscribe-msg" class="font-sans text-xs text-earth-400 hidden" role="status" aria-live="polite"></p>
+          <p class="font-sans text-[10px] text-earth-300">No spam. Unsubscribe anytime.</p>
+        </form>
+      </div>
+
+      <!-- Social -->
+      <div class="mt-6 flex items-center gap-6">
+        <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Follow</p>
+        <a href="#" class="flex items-center gap-2 font-sans text-xs text-earth-500 hover:text-earth-700 transition-colors cursor-pointer" aria-label="Instagram">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="#" class="flex items-center gap-2 font-sans text-xs text-earth-500 hover:text-earth-700 transition-colors cursor-pointer" aria-label="Line">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5C21 7.36 16.97 4 12 4S3 7.36 3 11.5c0 3.72 3.28 6.84 7.71 7.39.3.07.71.2.81.47.09.24.06.62.03.86l-.13.79c-.04.24-.18.94.83.51 1-.43 5.4-3.18 7.37-5.44C21 14.32 21 12.97 21 11.5z"/></svg>
+          Line
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer class="bg-earth-800 text-cream-300 pt-16 pb-8 px-6 md:px-12" role="contentinfo">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 mb-12">
+    <div class="md:col-span-2">
+      <p class="font-serif text-xl text-cream-100 mb-3">Chiang Mai <em class="italic">Craft House</em></p>
+      <p class="font-sans text-xs leading-relaxed text-earth-300 font-light max-w-xs">Handwoven rattan and bamboo lamps made in northern Thailand by families who have practiced this craft for generations.</p>
+    </div>
+    <div>
+      <h4 class="font-sans text-[9px] tracking-widest uppercase text-earth-400 mb-5">Shop</h4>
+      <ul class="space-y-3" role="list">
+        <li><a href="collection.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Pendant lamps</a></li>
+        <li><a href="collection.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Floor lamps</a></li>
+        <li><a href="collection.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Table lamps</a></li>
+        <li><a href="contact.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Custom orders</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-sans text-[9px] tracking-widest uppercase text-earth-400 mb-5">Info</h4>
+      <ul class="space-y-3" role="list">
+        <li><a href="craft.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Our craft</a></li>
+        <li><a href="about.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">About</a></li>
+        <li><a href="contact.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Visit & contact</a></li>
+        <li><a href="contact.html" class="font-sans text-xs text-earth-300 hover:text-cream-100 transition-colors cursor-pointer">Stockists</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-earth-600 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+    <p class="font-sans text-[10px] text-earth-500">© 2026 Chiang Mai Craft House. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="font-sans text-[10px] text-earth-500 hover:text-earth-300 transition-colors cursor-pointer">Privacy</a>
+      <a href="#" class="font-sans text-[10px] text-earth-500 hover:text-earth-300 transition-colors cursor-pointer">Shipping</a>
+      <a href="#" class="font-sans text-[10px] text-earth-500 hover:text-earth-300 transition-colors cursor-pointer">Returns</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div id="cart-overlay" role="dialog" aria-modal="true" aria-label="Shopping cart"></div>
+<aside id="cart-sidebar" aria-label="Cart">
+  <div class="cart-header">
+    <h2 class="font-serif text-lg text-earth-800">Your cart</h2>
+    <button onclick="closeCart()" class="cursor-pointer text-earth-400 hover:text-earth-700 transition-colors" aria-label="Close cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="cart-items-list" class="cart-items"></div>
+  <div id="cart-footer" class="cart-footer" style="display:none">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-sans text-[10px] tracking-widest uppercase text-earth-400">Total</span>
+      <span id="cart-total" class="font-serif text-xl text-earth-800"></span>
+    </div>
+    <p class="font-sans text-[10px] text-earth-400 font-light mb-4">Shipping calculated at checkout. Free within Thailand.</p>
+    <button class="btn-outline w-full text-center cursor-pointer">Checkout →</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
+<script>
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const input = document.getElementById('email-input');
+    const msg = document.getElementById('subscribe-msg');
+    if (!input.value || !input.validity.valid) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.classList.remove('hidden', 'text-earth-400');
+      msg.classList.add('text-red-600');
+      return;
+    }
+    msg.textContent = 'Thank you — we\'ll be in touch slowly.';
+    msg.classList.remove('hidden', 'text-red-600');
+    msg.classList.add('text-earth-400');
+    input.value = '';
+  }
+</script>
+</body>
+</html>
