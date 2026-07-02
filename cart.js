@@ -63,13 +63,11 @@ function buildProductCardHTML(p, index, opts) {
   const detailHref = `product.html?id=${encodeURIComponent(p.id)}`;
 
   return `
-    <article class="product-card bg-cream-50 cursor-pointer" data-type="${p.type || ''}" data-price="${p.price}" aria-label="${p.name}">
-      <a href="${detailHref}" class="block">
-        <div class="product-img aspect-square ${bgImg} flex items-center justify-center overflow-hidden relative">${media}</div>
-      </a>
+    <article class="product-card bg-cream-50" data-type="${p.type || ''}" data-price="${p.price}" aria-label="${p.name}">
+      <div class="product-img aspect-square ${bgImg} flex items-center justify-center overflow-hidden relative">${media}</div>
       <div class="${padClass} bg-cream-50">
         <p class="font-sans text-[10px] tracking-widest uppercase text-earth-400 mb-1">${p.material || ''} · ${p.typeLabel || ''}</p>
-        <a href="${detailHref}" class="block hover:opacity-70 transition-opacity"><h3 class="${nameClass}">${p.name}</h3></a>
+        <h3 class="${nameClass}">${p.name}</h3>
         ${dims}
         <p class="font-sans text-sm text-earth-600 mb-3">฿${(p.price || 0).toLocaleString()}</p>
         <div class="flex items-center gap-2">
